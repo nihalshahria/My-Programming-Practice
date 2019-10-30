@@ -1,0 +1,2 @@
+#include <bits/stdc++.h> 
+using namespace std;int main(){char s[1500], t[1500];while(fgets(s,1500, stdin)!=NULL){fgets(t,1500, stdin)!=NULL;int ars[26]={0}, art[26]={0};for (int i = 0; i < strlen(s); ++i)ars[(int)s[i]-97]++;for (int i = 0; i < strlen(t); ++i)	art[(int)t[i]-97]++;for (int i = 0; i < 26; ++i)for (int j = 0; j < min(ars[i], art[i]); ++j)cout << (char)(i+97);cout <<'\n';}return 0;}
