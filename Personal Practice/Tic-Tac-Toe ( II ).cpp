@@ -123,49 +123,10 @@ int main(){
         int scnd = second_score(grid);//cout<<scnd<<endl;
         int numOfx = X_counter(grid);//cout<<numOfx<<endl;
         int numOfo = O_counter(grid);//cout<<numOfo<<endl;
-        if (frst && scnd || numOfo > numOfx || numOfx > numOfo+1 || numOfx == numOfo && frst || numOfx==numOfo+1 && scnd || !(frst|| scnd|| (numOfx + numOfo==9)))
-        {
-            cout<<"invalid";
-        }
-        else if (frst)
-        {
-            bool b=true;
-            for (int j=0; j<3; j++)
-                for (int k=0; k<3; k++)
-                {
-                    if(grid[j][k]!='X')continue;
-                    grid[j][k]='.';
-                    int z=first_score(grid);
-                    if (z==0)
-                        b=true;
-                    grid[j][k]='X';
-                }
-            if (b)
-                cout << "valid";
-            else
-                cout << "invalid";
-        }
-        else if (scnd)
-        {
-            bool b=false;
-            for (int j=0; j<3; j++)
-                for (int k=0; k<3; k++)
-                {
-                    if(grid[j][k]!='O')continue;
-                    grid[j][k]='.';
-                    int z=second_score(grid);
-                    if (z==0)
-                        b=true;
-                    grid[j][k]='O';
-                }
-            if (b)
-                cout << "valid";
-            else
-                cout << "invalid";
-        }
+        if (frst && scnd || numOfo > numOfx || numOfx > numOfo+1 || scnd > 1 || numOfx == numOfo && frst || numOfx==numOfo+1 && scnd || !(frst|| scnd|| (numOfx + numOfo==9)))
+            cout<<"invalid"<<endl;
         else
-            cout << "valid";
-        cout << endl;
+            cout << "valid"<<endl;
     }
     return 0;
 }
