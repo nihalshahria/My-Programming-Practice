@@ -23,79 +23,46 @@
 
 using namespace std;
 
-int first_score(char grid[3][3])
-{
+int first_score(char grid[3][3]){
     int c=0;
-    if (grid[0][0]=='X'&& grid[1][0]=='X'&& grid[2][0]=='X')
-        c++;
-    if (grid[0][1]=='X'&& grid[1][1]=='X'&& grid[2][1]=='X')
-        c++;
-    if (grid[0][2]=='X'&& grid[1][2]=='X'&& grid[2][2]=='X')
-        c++;
-    if (grid[0][0]=='X'&& grid[0][1]=='X'&& grid[0][2]=='X')
-        c++;
-    if (grid[1][0]=='X'&& grid[1][1]=='X'&& grid[1][2]=='X')
-        c++;
-    if (grid[2][0]=='X'&& grid[2][1]=='X'&& grid[2][2]=='X')
-        c++;
-    if (grid[0][0]=='X'&& grid[1][1]=='X'&& grid[2][2]=='X')
-        c++;
-    if (grid[0][2]=='X'&& grid[1][1]=='X'&& grid[2][0]=='X')
-        c++;
+    if (grid[0][0]=='X'&& grid[1][0]=='X'&& grid[2][0]=='X')c++;
+    if (grid[0][1]=='X'&& grid[1][1]=='X'&& grid[2][1]=='X')c++;
+    if (grid[0][2]=='X'&& grid[1][2]=='X'&& grid[2][2]=='X')c++;
+    if (grid[0][0]=='X'&& grid[0][1]=='X'&& grid[0][2]=='X')c++;
+    if (grid[1][0]=='X'&& grid[1][1]=='X'&& grid[1][2]=='X')c++;
+    if (grid[2][0]=='X'&& grid[2][1]=='X'&& grid[2][2]=='X')c++;
+    if (grid[0][0]=='X'&& grid[1][1]=='X'&& grid[2][2]=='X')c++;
+    if (grid[0][2]=='X'&& grid[1][1]=='X'&& grid[2][0]=='X')c++;
     return c;
 }
 
-int second_score(char grid[3][3])
-{
+int second_score(char grid[3][3]){
     int c=0;
-    if ( grid[0][0]=='O'&& grid[1][0]=='O'&& grid[2][0]=='O')
-        c++;
-    if ( grid[0][1]=='O'&& grid[1][1]=='O'&& grid[2][1]=='O')
-        c++;
-    if ( grid[0][2]=='O'&& grid[1][2]=='O'&& grid[2][2]=='O')
-        c++;
-    if ( grid[0][0]=='O'&& grid[0][1]=='O'&& grid[0][2]=='O')
-        c++;
-    if ( grid[1][0]=='O'&& grid[1][1]=='O'&& grid[1][2]=='O')
-        c++;
-    if ( grid[2][0]=='O'&& grid[2][1]=='O'&& grid[2][2]=='O')
-        c++;
-    if ( grid[0][0]=='O'&& grid[1][1]=='O'&& grid[2][2]=='O')
-        c++;
-    if ( grid[0][2]=='O'&& grid[1][1]=='O'&& grid[2][0]=='O')
-        c++;
+    if ( grid[0][0]=='O'&& grid[1][0]=='O'&& grid[2][0]=='O')c++;
+    if ( grid[0][1]=='O'&& grid[1][1]=='O'&& grid[2][1]=='O')c++;
+    if ( grid[0][2]=='O'&& grid[1][2]=='O'&& grid[2][2]=='O')c++;
+    if ( grid[0][0]=='O'&& grid[0][1]=='O'&& grid[0][2]=='O')c++;
+    if ( grid[1][0]=='O'&& grid[1][1]=='O'&& grid[1][2]=='O')c++;
+    if ( grid[2][0]=='O'&& grid[2][1]=='O'&& grid[2][2]=='O')c++;
+    if ( grid[0][0]=='O'&& grid[1][1]=='O'&& grid[2][2]=='O')c++;
+    if ( grid[0][2]=='O'&& grid[1][1]=='O'&& grid[2][0]=='O')c++;
     return c;
 }
 
-int X_counter(char grid[3][3])
-{
+int X_counter(char grid[3][3]){
     int c = 0;
     for (int i = 0; i < 3; ++i)
-    {
         for (int j = 0; j < 3; ++j)
-        {
-            if (grid[i][j]=='X')
-            {
-                c++;
-            }
-        }
-    }
+            if (grid[i][j]=='X')c++;
     return c;
 }
 
-int O_counter(char grid[3][3])
-{
+int O_counter(char grid[3][3]){
     int c = 0;
     for (int i = 0; i < 3; ++i)
-    {
         for (int j = 0; j < 3; ++j)
-        {
             if (grid[i][j]=='O')
-            {
                 c++;
-            }
-        }
-    }
     return c;
 }
 
@@ -104,29 +71,28 @@ int main(){
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
     #endif
-
     char grid[3][3];
     while(1)
     {
         for (int i = 0; i < 3; ++i)
-        {
             for (int j = 0; j < 3; ++j)
             {
                 cin>>grid[i][j];
-                if (grid[i][j]=='e')
-                {
-                    return 0;
-                }
+                if (grid[i][j]=='e') return 0;
             }
-        }
-        int frst = first_score(grid); //cout<<frst<<endl;
-        int scnd = second_score(grid);//cout<<scnd<<endl;
-        int numOfx = X_counter(grid);//cout<<numOfx<<endl;
-        int numOfo = O_counter(grid);//cout<<numOfo<<endl;
-        if (frst && scnd || numOfo > numOfx || numOfx > numOfo+1 || scnd > 1 || numOfx == numOfo && frst || numOfx==numOfo+1 && scnd || !(frst|| scnd|| (numOfx + numOfo==9)))
+        int frst = first_score(grid),
+            scnd = second_score(grid),
+            numOfx = X_counter(grid),
+            numOfo = O_counter(grid);
+        if (frst && scnd
+            || numOfo > numOfx
+            || numOfx > numOfo+1
+            || scnd > 1
+            || numOfx == numOfo && frst
+            || numOfx==numOfo+1 && scnd
+            || !(frst|| scnd|| (numOfx + numOfo==9)))
             cout<<"invalid"<<endl;
         else
-            cout << "valid"<<endl;
+            cout << "valid" <<endl;
     }
-    return 0;
 }
