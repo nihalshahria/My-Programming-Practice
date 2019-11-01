@@ -37,6 +37,8 @@ int main(){
     {
         v.pb(i);                                        //vector input
     }
+    bool nihal = binary_search(v.begin(), v.end(), 3);
+    cout<<"Nihal "<<nihal<<endl;
     vector<int> :: iterator vi;                         //iterator declaration
     for (vi = v.begin(); vi != v.end(); ++vi)           //vector print
         cout << *vi << " ";
@@ -119,5 +121,11 @@ int main(){
     }
     cout<<endl;
         cout<<mypq.top()<<endl;
+    int n[10] = {2};
+    for (int i = 0; i < 10; ++i)
+    {
+        cout<<n[i]<<endl;
+    }
+
     return 0;
 }
