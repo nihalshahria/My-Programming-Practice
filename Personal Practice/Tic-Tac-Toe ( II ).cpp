@@ -85,11 +85,11 @@ int main(){
             numOfx = X_counter(grid),
             numOfo = O_counter(grid);
         if (frst && scnd
-            || numOfo > numOfx
-            || numOfx > numOfo+1
-            || scnd > 1
             || numOfx == numOfo && frst
             || numOfx==numOfo+1 && scnd
+            || scnd > 1
+            || numOfo > numOfx
+            || numOfx > numOfo+1
             || !(frst|| scnd|| (numOfx + numOfo==9)))
             cout<<"invalid"<<endl;
         else
