@@ -20,7 +20,7 @@ Abir will pay = 2256
 Joy spent = 764
 Joy's meal number = 33
 Joy's cost = 3094.678112
-Joy will pay = 2385
+Joy will pay = 2331
 
 
 Shusan spent = 761
