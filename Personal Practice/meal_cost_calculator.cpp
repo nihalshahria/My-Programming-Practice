@@ -59,7 +59,7 @@ int main()
     //Abir
     printf("\n\nAbir spent = %d\nAbir's meal number = %d\nAbir's cost = %f\nAbir will pay = %0.0f\n", abir, m1, (meal_cost*m1)+(house_rent/7)+(bua_bill/7)+(gas/7)+wifi, ceil(wifi+(meal_cost*m1+house_rent/7+bua_bill/7)+(gas/7)-abir));
     //Joy
-    printf("\n\nJoy spent = %d\nJoy's meal number = %d\nJoy's cost = %f\nJoy will pay = %0.0f\n", joy, m2, (meal_cost*m2)+(house_rent/7)+(bua_bill/7)+(gas/7)+wifi, ceil(wifi+(meal_cost*m1)+(house_rent/7)+(bua_bill/7)+(gas/7)-joy));
+    printf("\n\nJoy spent = %d\nJoy's meal number = %d\nJoy's cost = %f\nJoy will pay = %0.0f\n", joy, m2, (meal_cost*m2)+(house_rent/7)+(bua_bill/7)+(gas/7)+wifi, ceil(wifi+(meal_cost*m2)+(house_rent/7)+(bua_bill/7)+(gas/7)-joy));
     //Shusan
     printf("\n\nShusan spent = %d\nShusan's meal number = %d\nShusan's cost = %f\nShusan will pay = %0.0f\n", shusan, m3, (meal_cost*m3)+(house_rent/7)+(bua_bill/7)+(gas/7)+wifi, ceil(wifi+(meal_cost*m3)+(house_rent/7)+(bua_bill/7)+(gas/7)-shusan));
     //Shojol
