@@ -1,53 +1,5 @@
-Abir spent = Joy spent = Shusan spent = Sojol spent = Nihal spent = Maruf spent = Efaz spent = House rent = 10500
-Khalar beton = 2600
-Gas Bill = 1100
-Wifi Bill = 1200
-
-Abir's meal number = Joy's meal number = Shusan's meal number = Sojol's meal number = Nihal's meal number = Maruf's meal number = Efaz's meal number = 
-Total meal cost = 6103.000000
-Total meal = 225.000000
-Cost per meal = 27.124445
-
-if anyone's pay is negative then he will get that much money
-
-
-Abir spent = 893
-Abir's meal number = 35
-Abir's cost = 3148.927002
-Abir will pay = 2256
-
-
-Joy spent = 764
-Joy's meal number = 33
-Joy's cost = 3094.678112
-Joy will pay = 2331
-
-
-Shusan spent = 761
-Shusan's meal number = 36
-Shusan's cost = 3176.051447
-Shusan will pay = 2416
-
-
-Sojol spent = 847
-Sojol's meal number = 33
-Sojol's cost = 3094.678112
-Sojol will pay = 2248
-
-
-Nihal spent = 718
-Nihal's meal number = 21
-Nihal's cost = 2769.184773
-Nihal will pay = 2052
-
-
-Maruf spent = 1425
-Maruf's meal number = 40
-Maruf's cost = 3284.549227
-Maruf will pay = 1860
-
-
-Efaz spent = 695
-Efaz's meal number = 27
-Efaz's cost = 2931.931443
-Efaz will pay = 2237
+1
+2
+7
+8
+9
