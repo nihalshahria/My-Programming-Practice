@@ -24,9 +24,9 @@
 #define INF             9999999
 
 using namespace std;
-int vals[110][110];
-int visited[110][110];
-int grid[110][110];
+int vals[105][105];
+int visited[105][105];
+int grid[105][105];
 int f[4][2] = {0, 1, 0, -1, 1, 0, -1, 0};
 int m, n, a, b;
 queue < pair < int, int > > q;
