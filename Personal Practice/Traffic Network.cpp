@@ -20,13 +20,9 @@
 #define pf(a)           cout<<a<<endl
 #define fr(i,x,n)       for(int i=x;i<n;i++)
 #define pb(a)           push_back(a)
-#define INF             1000000000
-
+#define mp(a,b)         make_pair(a,b)
+#define INF             9999999
 using namespace std;
-
-std::vector<int> v1(10010, INF);
-std::vector<int> v2(10010, INF);
-int n, m, k, s, t;
 int main(){
     #ifndef ONLINE_JUDGE
     freopen("input.txt", "r", stdin);
@@ -34,11 +30,67 @@ int main(){
     #endif
 
     int t;
-    cin>>t;
+    sf(t);
     while(t--)
     {
-        cin>>n>>m>>k>>s>>t;
-
+        int n, m, k, s, t;
+        int n1, n2, w;
+        sfff(n,m,k);
+        sff(s,t);
+        std::vector<int> vs[n+1], vt[n+1], ws[n+1], wt[n+1];
+        int a1[n+1], a2[n+1];
+        while(m--){
+            sfff(n1,n2,w);
+            vs[n1].pb(n2);
+            vt[n2].pb(n1);
+            ws[n1].pb(w);
+            wt[n2].pb(w);
+        }
+        for (int i = 1; i <= n; ++i)
+            a1[i] = a2[i] = 9999999;
+        a1[s]=0;
+        a2[t]=0;
+        queue<pair<int, int>>q;
+        q.push(mp(0, s));
+        while(!q.empty())
+        {
+            pair<int, int>p = q.front();
+            int x = p.second;
+            q.pop();
+            for (int i = 0; i < vs[x].size(); ++i)
+            {
+                if(a1[vs[x][i]] > a1[x] + ws[x][i])
+                {
+                    a1[vs[x][i]] = a1[x] + ws[x][i];
+                    q.push(mp(a1[vs[x][i]], vs[x][i]));
+                }
+            }
+        }
+        q.push(mp(0, t));
+        while(!q.empty())
+        {
+            pair<int, int>p = q.front();
+            int x = p.second;
+            q.pop();
+            for (int i = 0; i < vt[x].size(); ++i)
+            {
+                if(a2[vt[x][i]] > a2[x] + wt[x][i])
+                {
+                    a2[vt[x][i]] = a2[x] + wt[x][i];
+                    q.push(mp(a2[vt[x][i]], vt[x][i]));
+                }
+            }
+        }
+        int c = a1[t];
+        while(k--)
+        {
+            int nd1, nd2, ed;
+            sfff(nd1,nd2,ed);
+            c = min(c, ed + min(a1[nd1], a1[nd2]) + min(a2[nd1], a2[nd2]));
+        }
+        if(c == 9999999)
+            c=-1;
+        printf("%d\n", c);
     }
     return 0;
 }
