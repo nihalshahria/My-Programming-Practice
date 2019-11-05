@@ -17,8 +17,7 @@
 #define sf(a)           scanf("%d",&a)
 #define sff(a,b)        scanf("%d%d",&a,&b)
 #define sfff(a,b,c)     scanf("%d%d%d",&a,&b,&c)
-#define pf(a)           cout<<a<<endl
-#define fr(i,x,n)       for(int i=x;i<n;i++)
+#define fr(i,x,n)       for(int i=x;i<=n;i++)
 #define pb(a)           push_back(a)
 #define mp(a,b)         make_pair(a,b)
 #define INF             9999999
@@ -43,15 +42,16 @@ void dijkstras(){
         int x = p.first;
         int y = p.second;
         visited[x][y] = 0;
-        for (int i = 0; i < 4; ++i)
-        {
+        fr(i,0,3){
             int c = x + f[i][0];
             int d = y + f[i][1];
-            if (c >= 1 && d >= 1 && c <= m && d <= n && vals[c][d] > vals[x][y] + grid[c][d])
-            {
+            if (c >= 1 &&
+                d >= 1 &&
+                c <= m &&
+                d <= n &&
+                vals[c][d] > vals[x][y] + grid[c][d]){
                 vals[c][d] = vals[x][y] + grid[c][d];
-                if (!visited[c][d])
-                {
+                if (!visited[c][d]){
                     visited[c][d] = 1;
                     q.push(mp(c,d));
                 }
@@ -60,22 +60,15 @@ void dijkstras(){
     }
 }
 int main(){
-    #ifndef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-    #endif
-
     int k;
-    scanf("%d",&k);
+    sf(k);
     while(k--){
-        scanf("%d%d",&m,&n);
-        for(int i=1;i<=m;++i){
-            for(int j=1;j<=n;++j){
-                scanf("%d",&grid[i][j]);
-            }
-        }
+        sff(m,n);
+        fr(i,1,m)
+            fr(j,1,n)
+                sf(grid[i][j]);
         int t;
-        scanf("%d %d %d",&a,&b,&t);
+        sfff(a,b,t);
         dijkstras();
         if(vals[a][b]<=t){
             printf("YES\n");

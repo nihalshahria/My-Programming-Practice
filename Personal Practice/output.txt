@@ -1,8 +1,3 @@
-Enter number of elements in the array:
-Enter 5 integers
-Printing the sorted array:
-1
-2
-7
-8
-9
+YES
+4
+NO
