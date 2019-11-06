@@ -24,47 +24,42 @@
 #define mp(a,b)         make_pair(a,b)
 #define INF             9999999
 
-using namespace std;
-int d[8][2]={-1,-1,
-              0,-1,
-              1,-1,
-              -1,0,
-              1,0,
-              -1,1,
-              0,1,
-              1,1};
-char grid[102][102];
-int k, m, n;
 
-void dfs(int x, int y)
-{
-    if (grid[x][y]=='*'||x<0||y<0||x>=m||y>=n)return;
-    //cout<<"Bih "<<x<<" "<<y<<endl;
-    grid[x][y]='*';
-    fr(i,0,8)
-        dfs(x + d[i][0], y + d[i][1]);
-}
+using namespace std;
 int main(){
+
     #ifndef ONLINE_JUDGE
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
     #endif
-    while(cin>>m>>n)
-    {
-        if (m==0) return 0;
-        getchar();
-        k = 0;
-        fr(i,0,m)
-            cin>>grid[i];
-        fr(i,0,m)
-            fr(j,0,n)
-            {
 
-                //cout<<"NIhal"<<endl;
-                if (grid[i][j]=='@')k++;
-                dfs(i, j);
-            }
-        cout<<k<<endl;
+    int n;
+    while(cin>>n, n)
+    {
+        //std::vector<int> m;
+        multiset<int> m;
+        int cost = 0;
+        int sum = 0;
+        fr(i,0,n)
+        {
+            int x;
+            cin>>x;
+            m.insert(x);
+        }
+        //sort(m.begin(), m.end());
+        while(m.size()>1)
+        {
+            sum = *m.begin();
+            //cout<<sum<<endl;
+            m.erase(m.begin());
+            int y = *m.begin();
+            sum = sum + y;
+            m.erase(m.begin());
+            cost+=sum;
+            m.insert(sum);
+            //sort(m.begin(), m.end());
+        }
+        cout<<cost<<endl;
     }
     return 0;
 }
