@@ -1,34 +1,30 @@
 #include <stdio.h>
-// function to sort the subsection a[i .. j] of the array a[]
 void merge_sort(int i, int j, int a[], int aux[]) {
     if (j <= i) {
-        return;     // the subsection is empty or a single element
+        return;
     }
     int mid = (i + j) / 2;
-    // left sub-array is a[i .. mid]
-    // right sub-array is a[mid + 1 .. j]
-    merge_sort(i, mid, a, aux);     // sort the left sub-array recursively
-    merge_sort(mid + 1, j, a, aux);     // sort the right sub-array recursively
-    int pointer_left = i;       // pointer_left points to the beginning of the left sub-array
-    int pointer_right = mid + 1;        // pointer_right points to the beginning of the right sub-array
-    int k;      // k is the loop counter
-    // we loop from i to j to fill each element of the final merged array
+    merge_sort(i, mid, a, aux);
+    merge_sort(mid + 1, j, a, aux);
+    int pointer_left = i;
+    int pointer_right = mid + 1;
+    int k;
     for (k = i; k <= j; k++) {
-        if (pointer_left == mid + 1) {      // left pointer has reached the limit
+        if (pointer_left == mid + 1) {
             aux[k] = a[pointer_right];
             pointer_right++;
-        } else if (pointer_right == j + 1) {        // right pointer has reached the limit
+        } else if (pointer_right == j + 1) {
             aux[k] = a[pointer_left];
             pointer_left++;
-        } else if (a[pointer_left] < a[pointer_right]) {        // pointer left points to smaller element
+        } else if (a[pointer_left] < a[pointer_right]) {
             aux[k] = a[pointer_left];
             pointer_left++;
-        } else {        // pointer right points to smaller element
+        } else {
             aux[k] = a[pointer_right];
             pointer_right++;
         }
     }
-    for (k = i; k <= j; k++) {      // copy the elements from aux[] to a[]
+    for (k = i; k <= j; k++) {
         a[k] = aux[k];
     }
 }

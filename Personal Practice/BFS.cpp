@@ -8,7 +8,7 @@ vector<int>v[max];
 
 int lev[max]={0}, a[max]={0};
 
-bool vis[1000];
+bool vis[100015];
 
 void bfs()
 {
@@ -36,6 +36,11 @@ void bfs()
 
 int main()
 {
+    #ifndef ONLINE_JUDGE
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+    #endif
+
     int n, e;
     cin>>n;
     for(int i=0; i<n-1;i++)
@@ -45,9 +50,15 @@ int main()
         v[x].push_back(y);
         v[y].push_back(x);
     }
-    int x;
-    cin>>x;
     bfs();
-    cout<< a[x]<<endl;
+    int even = 0,  odd = 0;
+    for (int i = 0; i<=n; ++i)
+    {
+        if(i%2==0)
+            even+=a[i];
+        else
+            odd+=a[i];
+    }
+    cout<<even<<" "<<odd<<endl;
     return 0;
 }

@@ -35,11 +35,6 @@ void display(){
 }
 int main()
 {
-    #ifndef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-    #endif
-
     deQueue();
     enQueue(1);
     enQueue(2);

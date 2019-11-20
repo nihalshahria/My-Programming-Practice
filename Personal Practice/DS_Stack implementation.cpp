@@ -30,10 +30,7 @@ void display()
 
 int main()
 {
-    #ifndef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-    #endif
+
 
     top=-1;
     scanf("%d",&n);

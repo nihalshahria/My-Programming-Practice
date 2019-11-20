@@ -20,25 +20,37 @@
 #define pf(a)           cout<<a<<endl
 #define fr(i,x,n)       for(int i=x;i<n;i++)
 #define pb(a)           push_back(a)
-
+#define pii             pair<int,int>
+#define mp(a,b)         make_pair(a,b)
+#define INF             9999999
 using namespace std;
+
+struct person
+{
+    char name[10];
+    int age;
+    float salary;
+};
 int main(){
-    int n;
-    cin>>n;
-    int a[n];
-    for (int i = 0; i < n; ++i)
-        cin>>a[i];
-    for (int i = 0; i < n-1; ++i)
-    {
-        int ptr = 0;
-        while(ptr < n-i)
-        {
-            if (a[ptr]>a[ptr+1])
-                swap(a[ptr], a[ptr+1]);
-            ptr++;
-        }
-    }
-    for (int i = 0; i < n; ++i)
-        cout<<a[i]<<endl;
+    #ifndef ONLINE_JUDGE
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+    #endif
+
+    struct person person1, person2;
+    cin>>person1.name;
+    cin>>person1.age;
+    cin>>person1.salary;
+    cin>>person2.name;
+    cin>>person2.age;
+    cin>>person2.salary;
+
+    cout<<person1.name<<endl;
+    cout<<person1.age<<endl;
+    cout<<person1.salary<<endl;
+    cout<<person2.name<<endl;
+    cout<<person2.age<<endl;
+    cout<<person2.salary<<endl;
+
     return 0;
 }

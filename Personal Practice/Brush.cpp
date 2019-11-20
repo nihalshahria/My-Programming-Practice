@@ -24,49 +24,58 @@
 #define mp(a,b)         make_pair(a,b)
 #define INF             9999999
 
+
 using namespace std;
-int n, k;
-std::vector<pii> v[1010];
-
-int time(int f, int t, int ct){
-    int dis = abs(f-t)*10, rem;
-    if (f < t){
-        rem = ct % dis;
-        return (dis-rem)%dis;
-    }
-    else
-        return ct%dis;
-}
-
-int dijkstra(){
-    multiset<pii>q;
-    q.insert(mp(0,1));
-    while(!q.empty()){
-        pii p = *q.begin();
-        q.erase(q.begin());
-        if(p.second == k)
-            return p.first;
-        for(int i=0; i < v[p.second].size(); ++i){
-            pii p1 = v[p.second][i];
-            //cout<<"NIHAL"<<endl;
-            printf("%d %d %d %d\n",p.first,time(p.second,p1.second,p.first),p1.first, p1.second);
-            q.insert(make_pair(p.first + time(p.second, p1.second,p.first) + p1.first, p1.second));
-        }
-    }
-}
 int main(){
     #ifndef ONLINE_JUDGE
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
     #endif
 
-    sff(k,n);
-    fr(i,0,n){
-        int a, b;
-        sff(a,b);
-        v[a].push_back(mp((b-a)*5, b));
-        v[b].push_back(mp((b-a)*5, a));
+    int t;
+    sf(t);
+    for (int x = 1; x <= t; ++x)
+    {
+        int n, m;
+        sff(n,m);
+        int n1, n2, w;
+        std::vector<int> vs[n+10], ws[n+1];
+        int a1[n+10];
+        while(m--){
+            sfff(n1,n2,w);
+            vs[n1].pb(n2);
+            vs[n2].pb(n1);
+            ws[n1].pb(w);
+            ws[n2].pb(w);
+        }
+        for (int i = 1; i <= n+9; ++i)
+            a1[i] = 9999999;
+        a1[1]=0;
+        queue<pair<int, int>>q;
+        q.push(mp(0, 1));
+        while(!q.empty())
+        {
+            pair<int, int>p = q.front();
+            int x = p.second;
+            q.pop();
+            for (int i = 0; i < vs[x].size(); ++i)
+            {
+                if(a1[vs[x][i]] > a1[x] + ws[x][i])
+                {
+                    a1[vs[x][i]] = a1[x] + ws[x][i];
+                    q.push(mp(a1[vs[x][i]], vs[x][i]));
+                }
+            }
+        }
+        if (a1[n]== 9999999)
+        {
+            printf("Case %d: Impossible\n", x);
+        }
+        else
+        {
+            printf("Case %d: %d\n", x, a1[n]);
+        }
+
     }
-    printf("%d\n", dijkstra());
-    return 0;
+return 0;
 }

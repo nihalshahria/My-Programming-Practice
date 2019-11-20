@@ -107,6 +107,37 @@ void strDelete(){
 }
 
 int main(){
+    printf("\n\t 1. Indexing\n\t 2. Substring\n\t 3. String Insert\n\t 4. String Delete\n\t 5.EXIT");
+    do{
+        printf("\n Enter the Choice:");
+        scanf("%d",&choice);
+        switch(choice)
+        {
+            case 1:
+            {
+                strIndexing();
+                break;
+            }
+            case 2:
+            {
+                substring();
+                break;
+            }
+            case 3:
+            {
+                strInsert();
+                break;
+            }
+            case 4:
+            {
+                strDelete();
+                break;
+            }
+            default:
+                printf ("\n\t Please Enter a Valid Choice(1/2/3/4)");
+        }
+    }while(choice!=5);
+    return 0;
     strIndexing();
     substring();
     strInsert();

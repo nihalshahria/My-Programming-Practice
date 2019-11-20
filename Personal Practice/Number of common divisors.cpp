@@ -20,25 +20,31 @@
 #define pf(a)           cout<<a<<endl
 #define fr(i,x,n)       for(int i=x;i<n;i++)
 #define pb(a)           push_back(a)
-
+#define pii             pair<int,int>
+#define mp(a,b)         make_pair(a,b)
+#define INF             9999999
 using namespace std;
-int main(){
-    int n;
-    cin>>n;
-    int a[n];
-    for (int i = 0; i < n; ++i)
-        cin>>a[i];
-    for (int i = 0; i < n-1; ++i)
+int gcd(int a, int b) {
+    if (b == 0)
+    return a;
+    return gcd(b, a % b);
+}
+int main() {
+    #ifndef ONLINE_JUDGE
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+    #endif
+    int t;
+    sf(t);
+    while(t--)
     {
-        int ptr = 0;
-        while(ptr < n-i)
-        {
-            if (a[ptr]>a[ptr+1])
-                swap(a[ptr], a[ptr+1]);
-            ptr++;
-        }
+        int a , b, d, count = 0;
+        sff(a,b);
+        d = gcd(a,b);
+        for (int i = 1; i <= d; ++i)
+            if (a%i==0 && b%i==0)
+                count++;
+        printf("%d\n", count);
     }
-    for (int i = 0; i < n; ++i)
-        cout<<a[i]<<endl;
     return 0;
 }

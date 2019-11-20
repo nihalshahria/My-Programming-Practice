@@ -59,11 +59,6 @@ void infixToPostfix(string s)
 }
 int main()
 {
-    #ifndef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-    #endif
-
 	string exp = "a+b*(c^d-e)^(f+g*h)-i";
 	infixToPostfix(exp);
 	return 0;

@@ -20,14 +20,30 @@
 #define pf(a)           cout<<a<<endl
 #define fr(i,x,n)       for(int i=x;i<n;i++)
 #define pb(a)           push_back(a)
-
 using namespace std;
+
+int binarySearch(int arr[], int l, int r, int x){
+    while (l <= r) {
+        int m = l + (r - l) / 2;
+        if (arr[m] == x)
+            return m;
+        if (arr[m] < x)
+            l = m + 1;
+        else
+            r = m - 1;
+    }
+    return -1;
+}
+
 int main(){
-    #ifndef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-    #endif
-
-
+    int arr[100];
+    int n;
+    cin >> n;
+    for (int i = 0; i < n; ++i)
+        cin>>arr[i];
+    int x;
+    cin >> x;
+    int result = binarySearch(arr, 0, n - 1, x);
+    (result == -1) ? printf("Element is not present in array") : printf("Element is present at index %d",result+1);
     return 0;
 }
