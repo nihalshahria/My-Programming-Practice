@@ -23,24 +23,26 @@
 #define pii             pair<int,int>
 #define mp(a,b)         make_pair(a,b)
 #define INF             9999999
+
+
 using namespace std;
 
-void divisor(){
-
+int p;
+long long  nihal(){
+    p=15;
+    return;
 }
+
 int main(){
     #ifndef ONLINE_JUDGE
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
     #endif
-    int t;
-    sf(t);
-    for (int z = 1; z <= t; ++z)
-    {
-        ll area = 1;
-        int n;
 
-    }
+   int n = 10;
+   nihal();
+   printf("%d\n", p);
+
 
     return 0;
 }
