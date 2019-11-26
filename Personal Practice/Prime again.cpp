@@ -14,7 +14,7 @@
 #define ull             unsigned long long
 #define fl              float
 #define db              double
-#define sf(a)           scanf("%lld",&a)
+#define sf(a)           scanf("%u",&a)
 #define sff(a,b)        scanf("%d%d",&a,&b)
 #define sfff(a,b,c)     scanf("%d%d%d",&a,&b,&c)
 #define pf(a)           printf("%lld\n", a);
@@ -28,8 +28,8 @@ using namespace std;
 
 std::vector <int> prime;
 bool is_composite[66000];
-int prime_check(ll i){
-    ll r = sqrt(i);
+int prime_check(unsigned int i){
+    unsigned int r = sqrt(i);
     //std::cout << i << std::endl;
     for (int j = 0; prime[j] <= r; ++j)
     {
@@ -45,6 +45,7 @@ int main(){
     freopen("output.txt", "w", stdout);
     #endif
 
+
     std::fill (is_composite, is_composite + 66000, false);
     for (int i = 2; i < 66000; ++i) {
         if (!is_composite[i])
@@ -57,11 +58,11 @@ int main(){
     int t;
     scanf("%d", &t);
     while(t--){
-        ll n;
+        unsigned int n;
         sf(n);
-        for (ll int i = n-1;; --i)  {
+        for (unsigned int i = n-1;; --i)  {
             if(prime_check(i)){
-                 printf("%lld\n", i);
+                 printf("%u\n", i);
                  break;
             }
         }
