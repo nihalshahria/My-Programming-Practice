@@ -23,7 +23,7 @@
 #define pii             pair<int,int>
 #define mp(a,b)         make_pair(a,b)
 #define INF             9999999
-#define mx				10000010
+#define mx		10000010
 using namespace std;
 
 std::vector <int> prime;
