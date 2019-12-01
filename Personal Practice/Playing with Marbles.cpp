@@ -49,41 +49,41 @@ int factor(int x){
 }
 
 int main(){
-	#ifndef ONLINE_JUDGE
+    #ifndef ONLINE_JUDGE
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
     #endif
     seive();
-	int x;
-	while(sf(x) && x!=0){
-		int t = x, c = 0, y;
-		printf("%d = ", x);
-		if (is_composite[t]==0){
-			y=1;
-			printf("%d", t);
-		}
-		else{
-			y = factor(x);
-			while(1){
-				int i;
-				for (i = 0; prime[i] <= t; ++i)
-					if (t%prime[i]==0){
-						c++;
-						break;
-					}
-				t = t/prime[i];
-				if (c==1)
-					printf("%d ", prime[i]);
-				else
-					printf("* %d ", prime[i]);
-				if (is_composite[t]==0){
-					c++;
-					printf("* %d", t);
-					break;
-				}
-			}
-		}
-		printf("\nWith %d marbles, %d different rectangles can be constructed.\n", x, y);
+    int x;
+    while(sf(x) && x!=0){
+    	int t = x, c = 0, y;
+	printf("%d = ", x);
+	if (is_composite[t]==0){
+ 	    y=1;
+ 	    printf("%d", t);
 	}
+	else{
+	    y = factor(x);
+	    while(1){
+ 	        int i;
+		for (i = 0; prime[i] <= t; ++i)
+	 	    if (t%prime[i]==0){
+			c++;
+			break;
+		    }
+		t = t/prime[i];
+		if (c==1)
+		    printf("%d ", prime[i]);
+		else
+		    printf("* %d ", prime[i]);
+		if (is_composite[t]==0){
+		    c++;
+		    printf("* %d", t);
+		    break;
+		}
+	    }
+	}
+		printf("\nWith %d marbles, %d different rectangles can be constructed.\n", x, y);
+    }
 	return 0;
 }
