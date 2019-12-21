@@ -2,13 +2,10 @@
 using namespace std;
 int main()
 {
-    #ifndef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-    #endif
+
 
     int abir, joy, shusan, shohag, nihal, maruf, efaz;
-    float meal_cost, total_cost, total_meal, house_rent = 10500, bua_bill = 2600, gas = 1100, wifi = 1200/7;
+    float meal_cost, total_cost, total_meal, house_rent = 10500, bua_bill = 2600, gas = 1150, wifi = 1200/7;
 
     //Marketing cost of all.
     printf("Abir spent = ");
