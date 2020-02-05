@@ -1,64 +1,40 @@
-#include<bits/stdc++.h>
+/*
+          _____       __   __   __      __                  __
+         |     \     |  | |  | |  |    |  |       /\       |  |
+         |  |\  \    |  | |  | |  |    |  |      /  \      |  |
+         |  | \  \   |  | |  | |  |____|  |     / /\ \     |  |
+         |  |  \  \  |  | |  | |   ____   |    / /__\ \    |  |
+         |  |   \  \ |  | |  | |  |    |  |   / ______ \   |  |
+         |  |    \  \|  | |  | |  |    |  |  / /      \ \  |  |_________
+         |__|     \_____| |__| |__|    |__| /_/        \_\ |____________|
+*/
 
-#define max 100015
+#include <bits/stdc++.h>
+#define ll              long long
+#define ull             unsigned long long
+#define sf(a)           scanf("%d",&a)
+#define sff(a,b)        scanf("%d%d",&a,&b)
+#define sfff(a,b,c)     scanf("%d%d%d",&a,&b,&c)
+#define pf(a)           printf("%d",a)
+#define fr(i,x,n)       for(int i=x;i<n;i++)
+#define pb(a)           push_back(a)
+#define pii             pair<int,int>
+#define mp(a,b)         make_pair(a,b)
+#define Pi              acos(-1)
+#define INF             9999999
 
 using namespace std;
-
-vector<int>v[max];
-
-int lev[max]={0}, a[max]={0};
-
-bool vis[100015];
-
-void bfs()
-{
-    queue<int>q;
-    q.push(1);
-    vis[1]=true;
-    a[1]=1;
-    lev[1]=1;
-    while(!q.empty())
-    {
-        int p = q.front();
-        q.pop();
-        for(int i = 0; i<v[p].size(); ++i)
-        {
-            if(vis[v[p][i]]==false)
-            {
-                q.push(v[p][i]);
-                lev[v[p][i]]= lev[p]+1;
-                a[lev[v[p][i]]]++;
-                vis[v[p][i]]=true;
-            }
-        }
-    }
-}
-
-int main()
-{
+int main(){
     #ifndef ONLINE_JUDGE
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
     #endif
 
-    int n, e;
-    cin>>n;
-    for(int i=0; i<n-1;i++)
+    int t;
+    sf(t);
+    for (auto i = 0; i < 5; ++i)
     {
-        int x, y;
-        cin>>x>>y;
-        v[x].push_back(y);
-        v[y].push_back(x);
+        cout<<i<<endl;
     }
-    bfs();
-    int even = 0,  odd = 0;
-    for (int i = 0; i<=n; ++i)
-    {
-        if(i%2==0)
-            even+=a[i];
-        else
-            odd+=a[i];
-    }
-    cout<<even<<" "<<odd<<endl;
     return 0;
 }
