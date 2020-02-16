@@ -96,12 +96,6 @@ int main() {
             }
             while(y[a]>=val&&a>0)a--;
             a = min(a,e);
-            // int a = lower_bound(x, x + n + 1, val) - x;
-            // int b = lower_bound(y, y + n + 1, val) - y;
-            //cout<<a<<" "<<b<<endl;
-            //while(y[b]>=val && b>=-1 && b<=n+1)b--;
-            //cout<<a<<" "<<b<<endl;
-            // cout << b - a << endl;
             printf("%d\n", b-a);
         }
     }
