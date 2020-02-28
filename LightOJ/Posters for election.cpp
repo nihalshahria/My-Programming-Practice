@@ -92,7 +92,6 @@ int main() {
         int n, q, l, r, pos = 0;
         sf(n);
         memset(arr, 0, sizeof(arr));
-        //memset(seg, 0, sizeof(seg));
         memset(lazy, 0, sizeof(lazy));
         for (int i = 1; i <= n; ++i) {
             sff(l, r),update(1, 1, 2 * n, l, r, i);
@@ -102,3 +101,4 @@ int main() {
         printf("Case %d: %d\n", z++, pos);
     }
 }
+

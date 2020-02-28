@@ -25,7 +25,7 @@ ll hashing(string s) {
     return value;
 }
 int main() {
-    int t, z = 1;
+    int t, z = 1, c;
     sf(t);
     getchar();
     while (t--) {
@@ -41,7 +41,7 @@ int main() {
         v.pb(hashing(s2)), fac.pb(fac[sz(fac)-1]*sz(fac));
         sort(v.begin(), v.end());
         ll ans = fac[fac.size()-1];
-        int c=1;
+        c=1;
         for (int i = 1; i < v.size(); ++i){
             if(v[i]!=v[i-1])ans/=fac[c],c=1;
             else c++;
