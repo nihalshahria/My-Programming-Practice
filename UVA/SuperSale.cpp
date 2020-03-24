@@ -62,7 +62,8 @@ int main() {
         sf(n);
         fr(i, 0, n) {
             sff(p, w);
-            for (int j = 30; j >= w; --j)/* cout << j << " " << dp[j] <<" "<<dp[j-w]+p <<endl,*/ dp[j] = max(dp[j], dp[j - w] + p);
+            for (int j = 30; j >= w; --j)
+            /* cout<<j<<" "<<dp[j]<<" "<<dp[j-w]+p<<endl,*/dp[j]=max(dp[j],dp[j-w]+p);
         }
         sf(g);
         while (g--)sf(mw),/* cout << mw << " " << dp[mw]<<endl, */ans += dp[mw];

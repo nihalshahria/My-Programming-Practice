@@ -8,7 +8,7 @@ void seive(){
     prime.push_back(2);
     for(int i=3;i<100;i+=2)if(!f[i])prime.push_back(i);
 }
-void factorization(){
+void factorization(){   //https://janmr.com/blog/2010/10/prime-factors-of-factorial-numbers/
     for(int i=2;i<=100;++i)
         for(int j=0;j<prime.size()&&prime[j]<=i;j++){
             int num=i,c=0;
@@ -30,9 +30,7 @@ int main(){
             for(int j=1;j<=n;++j)sum+=dp[j][prime[i]];
             if(sum){
                 c++;
-                if (c == 16)c = 0, printf("\n      ");
-                // if (sum < 10)printf("  ");
-                // else if (sum < 100)printf(" ");
+                if(c==16)c=0,printf("\n      ");
                 printf("%3d",sum);
             }
         }

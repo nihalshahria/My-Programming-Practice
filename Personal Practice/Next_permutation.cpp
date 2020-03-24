@@ -42,7 +42,7 @@
 #define intlim              2147483648
 #define MAX                 1000000
 #define inf                 99999999
-#define mx                  100005
+#define mx                  1005
 
 /*------------------------------Graph Moves----------------------------*/
 //const int fx[]={+1,-1,+0,+0};
@@ -53,17 +53,43 @@
 //const int fy[]={-1,  1, -2,  2, -2,  2, -1,  1}; // Knights Move
 /*---------------------------------------------------------------------*/
 using namespace std;
+
+int w[1010], cost[1010];
+int n, cap,g,sum;
+int mw[110];
+int dp[1010][1010];
+int f(int i, int sum) {
+    if (dp[i][sum] >= 0) {
+        return dp[i][sum];
+    }
+    if (i == n + 1)return dp[i][sum] = 0;
+    int p1, p2;
+    if (sum + w[i] <= cap)p1 = cost[i] + f(i + 1, sum + w[i]);
+    else p1 = 0;
+    p2 = f(i + 1, sum);
+    dp[i][sum] = max(p1, p2);
+    return dp[i][sum];
+}
+
 int main() {
-    std::vector<int> v;
-    int n, x;
-    sf(n);
-    while (n--)sf(x), v.pb(x);
-    //int a = next_permutation(v.begin(), v.end());
-    for (auto i = v.begin(); i != v.end(); ++i)cout << *i;
-    cout << endl;
-    while (next_permutation(v.begin(), v.end())) {
-        for (auto i = v.begin(); i != v.end(); ++i)cout << *i;
-        cout << endl;
+    int t;
+    sf(t);
+    while (t--) {
+        sum=0;
+        memset(w, 0, sizeof(w));
+        memset(cost, 0, sizeof(cost));
+        memset(mw, 0, sizeof(mw));
+        sf(n);
+        for (int i = 1; i <= n; ++i)sff(cost[i],w[i]);
+        sf(g);
+        for(int i = 1; i<=g; ++i){
+            sf(cap);
+            memset(dp,-1,sizeof(dp));
+            sum+=f(1,0);
+        }
+        printf("%d\n", sum);
+        // sff(n, cap);
+        // cout << f(1, 0) << endl;
     }
     return 0;
 }
