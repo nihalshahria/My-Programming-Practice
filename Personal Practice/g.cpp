@@ -58,26 +58,38 @@ const db PI = acos(-1); //3.14159265358979323846264338328
 //const int fy[]={-1,  1, -2,  2, -2,  2, -1,  1}; // Knights Move
 /*---------------------------------------------------------------------*/
 using namespace std;
-std::map<string, int> mp;
+map<string, int>mp;
+double dp[32][32];
+int n;
+void floyd(){
+    for (int k = 1; k <= n; ++k)
+        for (int i = 1; i <= n; ++i)
+            for (int j = 1; j <= n; ++j)
+                dp[i][j] = MAX(dp[i][j], dp[i][k]*dp[k][j]);
+}
 int main(){
-    int m, n;
-    sff(m,n);
-    getchar();
-    string str;
-    for (int i = 0,x; i < m; ++i)
-    {
-        cin>>str>>x;
-        mp[str] = x;
-        getchar();
-    }
-    for (int i = 0; i < n; ++i)
-    {
-        ll fee = 0;
-        while(cin>>str){
-            if(str==".")break;
-            fee+=mp[str];
+    int z = 1;
+    while(sf(n) && n){
+        mp.clear();
+        for (int i = 0; i < n; ++i){
+            string a;
+            cin>>a;
+            mp[a]=i+1;
         }
-        cout<<fee<<endl;
+        MEM(dp,0);
+        int m;
+        sf(m);
+        for (int i = 0; i < m; ++i){
+            string a, b;
+            double rt;
+            cin>>a>>rt>>b;
+            dp[mp[a]][mp[b]] = MAX(dp[mp[a]][mp[b]],rt);
+        }
+        floyd();
+        int f = 0;
+        for (int i = 1; i <= n; ++i)if(dp[i][i]>1)f++;
+        printf("Case %d: ", z++);
+        printf(f?"Yes\n":"No\n");
     }
     return 0;
 }

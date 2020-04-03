@@ -58,26 +58,15 @@ const db PI = acos(-1); //3.14159265358979323846264338328
 //const int fy[]={-1,  1, -2,  2, -2,  2, -1,  1}; // Knights Move
 /*---------------------------------------------------------------------*/
 using namespace std;
-std::map<string, int> mp;
 int main(){
-    int m, n;
-    sff(m,n);
-    getchar();
-    string str;
-    for (int i = 0,x; i < m; ++i)
-    {
-        cin>>str>>x;
-        mp[str] = x;
-        getchar();
+    int n;
+    sf(n);
+    int maxi = INT_MIN;
+    for (int i = 0,x; i < n; ++i){
+        sf(x);
+        if(x<0)maxi = max(maxi,x);
+        else if((int)sqrt(x)*(int)sqrt(x)!=x)maxi = max(maxi, x);
     }
-    for (int i = 0; i < n; ++i)
-    {
-        ll fee = 0;
-        while(cin>>str){
-            if(str==".")break;
-            fee+=mp[str];
-        }
-        cout<<fee<<endl;
-    }
+    cout<<maxi<<endl;
     return 0;
 }

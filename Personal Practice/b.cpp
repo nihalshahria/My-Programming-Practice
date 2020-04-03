@@ -58,26 +58,16 @@ const db PI = acos(-1); //3.14159265358979323846264338328
 //const int fy[]={-1,  1, -2,  2, -2,  2, -1,  1}; // Knights Move
 /*---------------------------------------------------------------------*/
 using namespace std;
-std::map<string, int> mp;
 int main(){
-    int m, n;
-    sff(m,n);
-    getchar();
-    string str;
-    for (int i = 0,x; i < m; ++i)
-    {
-        cin>>str>>x;
-        mp[str] = x;
-        getchar();
-    }
-    for (int i = 0; i < n; ++i)
-    {
-        ll fee = 0;
-        while(cin>>str){
-            if(str==".")break;
-            fee+=mp[str];
-        }
-        cout<<fee<<endl;
+    int t, z = 1;
+    sf(t);
+    while(t--){
+        printf("Case %d: ", z++);
+        ll n, m = 1;
+        sfl(n);
+        while(!(n&1))n/=2,m*=2;
+        if(m==1)printf("Impossible\n");
+        else printf("%lld %lld\n",n,m);
     }
     return 0;
 }
