@@ -45,7 +45,7 @@ using fl = float;
 using db = double;
 using ll = long long;
 using ull = unsigned long long;
-const int mx = 32778;
+// const int mx = 1000005;
 const int inf = 99999999;
 const int intlim = 2147483648;
 const db PI = acos(-1); //3.14159265358979323846264338328
@@ -58,7 +58,7 @@ const db PI = acos(-1); //3.14159265358979323846264338328
 //const int fy[]={-1,  1, -2,  2, -2,  2, -1,  1}; // Knights Move
 /*---------------------------------------------------------------------*/
 using namespace std;
-// #define mx                  1000006
+#define mx                  1000006
 std::vector <int> prime;
 bool is_composite[mx];
 void seive () {
@@ -71,17 +71,31 @@ void seive () {
         }
     }
 }
-std::map<pii , int> mp;
+
 int main(){
     seive();
-    int n;
-    while(sf(n)&&n){
-        int c = 0;
-        for (int i = 0; i != sz(prime) && prime[i]<=n/2; ++i)
+    int t;
+    sf(t);
+    while(t--){
+        int n, c = 1, k;
+        sff(n,k);
+        for (int i = 0; i < sz(prime)&& prime[i]<n; ++i)
         {
-            if(!is_composite[n-prime[i]])c++;
+            int f = 0;
+            while(n%prime[i]==0){
+                n/=prime[i];
+                // cout<<n<<" "<<prime[i]<<endl;
+                if(n>=2 && prime[i]>=2)c++;
+                if(c==k){
+                    f=1;
+                    break;
+                }
+            }
+            if(f)break;
         }
-        cout<<c<<endl;
+        if(c==k)cout<<1<<endl;
+        else cout<<0<<endl;
+
     }
     return 0;
 }

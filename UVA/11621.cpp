@@ -31,21 +31,21 @@
 #define fr(i,x,n)           for(int i=x;i<n;i++)
 #define rfr(i,x,n)          for(int i=x;i>n;i--)
 #define LCM(a, b)           ((a)*((b)/GCD(a,b)))
-template<typename T>T Abs(T a){return (a<0?-a:a);}
-template<typename T>T MAX(T a, T b){return (a>b?a:b);}
-template<typename T>T MIN(T a, T b){return (a<b?a:b);}
-template<typename T>T GCD(T a, T b){if(b==0)return a;return GCD(b,a%b);}
-template<typename T>inline void read(T &x){
-    T f=1;char c;x=0;
-    for(c=getchar();c<'0'||c>'9';c=getchar())if(c=='-')f=-1;
-    for(;c>='0'&&c<='9';c=getchar())x=x*10+c-'0';
-    x*=f;
+template<typename T>T Abs(T a) {return (a < 0 ? -a : a);}
+template<typename T>T MAX(T a, T b) {return (a > b ? a : b);}
+template<typename T>T MIN(T a, T b) {return (a < b ? a : b);}
+template<typename T>T GCD(T a, T b) {if (b == 0)return a; return GCD(b, a % b);}
+template<typename T>inline void read(T &x) {
+    T f = 1; char c; x = 0;
+    for (c = getchar(); c < '0' || c > '9'; c = getchar())if (c == '-')f = -1;
+    for (; c >= '0' && c <= '9'; c = getchar())x = x * 10 + c - '0';
+    x *= f;
 }
 using fl = float;
 using db = double;
 using ll = long long;
 using ull = unsigned long long;
-const int mx = 32778;
+const int mx = 1000005;
 const int inf = 99999999;
 const int intlim = 2147483648;
 const db PI = acos(-1); //3.14159265358979323846264338328
@@ -58,30 +58,34 @@ const db PI = acos(-1); //3.14159265358979323846264338328
 //const int fy[]={-1,  1, -2,  2, -2,  2, -1,  1}; // Knights Move
 /*---------------------------------------------------------------------*/
 using namespace std;
-// #define mx                  1000006
-std::vector <int> prime;
-bool is_composite[mx];
-void seive () {
-    std::fill (is_composite, is_composite + mx, false);
-    for (int i = 2; i < mx; ++i) {
-        if (!is_composite[i])prime.push_back (i);
-        for (int j = 0; j < prime.size () && i * prime[j] < mx; ++j) {
-            is_composite[i * prime[j]] = true;
-            if (i % prime[j] == 0) break;
-        }
-    }
+ll power(int x, int y) {
+    if (y == 0)return 1;
+    ll temp = power(x, y / 2);
+    if (y % 2 == 0) return (temp * temp);    //Mod before multiplying, if needed
+    else return (x * temp * temp);          //Mod before multiplying, if needed
 }
-std::map<pii , int> mp;
 int main(){
-    seive();
-    int n;
-    while(sf(n)&&n){
-        int c = 0;
-        for (int i = 0; i != sz(prime) && prime[i]<=n/2; ++i)
+    std::vector<ll > v;
+    ll x = power(2, 31);
+    for (int i = 0; i < 20; ++i)
+    {
+        for (int j = 0; j < 32; ++j)
         {
-            if(!is_composite[n-prime[i]])c++;
+            ll p = power(2, j) * power(3, i);
+            if (p > x)break;
+            v.pb(p);
         }
-        cout<<c<<endl;
     }
+    sort(v.begin(), v.end());
+    // cout << sz(v) << endl;
+    int n;
+    while (sf(n) && n) {
+        // cout<<n<<endl;
+        int pos = lower_bound(v.begin(), v.end(), n) - v.begin();
+        // cout<<pos<<endl;
+        printf("%lld\n", v[pos]);
+    }
+    // cout<<power(3,19)<<endl;
+    // cout<<power(2,31)<<endl;
     return 0;
 }

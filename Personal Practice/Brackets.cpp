@@ -45,7 +45,7 @@ using fl = float;
 using db = double;
 using ll = long long;
 using ull = unsigned long long;
-const int mx = 32778;
+const int mx = 1000005;
 const int inf = 99999999;
 const int intlim = 2147483648;
 const db PI = acos(-1); //3.14159265358979323846264338328
@@ -58,30 +58,47 @@ const db PI = acos(-1); //3.14159265358979323846264338328
 //const int fy[]={-1,  1, -2,  2, -2,  2, -1,  1}; // Knights Move
 /*---------------------------------------------------------------------*/
 using namespace std;
-// #define mx                  1000006
-std::vector <int> prime;
-bool is_composite[mx];
-void seive () {
-    std::fill (is_composite, is_composite + mx, false);
-    for (int i = 2; i < mx; ++i) {
-        if (!is_composite[i])prime.push_back (i);
-        for (int j = 0; j < prime.size () && i * prime[j] < mx; ++j) {
-            is_composite[i * prime[j]] = true;
-            if (i % prime[j] == 0) break;
-        }
-    }
-}
-std::map<pii , int> mp;
 int main(){
-    seive();
-    int n;
-    while(sf(n)&&n){
-        int c = 0;
-        for (int i = 0; i != sz(prime) && prime[i]<=n/2; ++i)
+    int t,z=1;
+    sf(t);
+    while(t--){
+        printf("Case #%d: ",z++);
+        string s;
+        getchar();
+        cin>>s;
+        int l = sz(s);
+        string str="";
+        int left=0;
+        for (int i = 0; i < l; ++i)
         {
-            if(!is_composite[n-prime[i]])c++;
+            if(i==0){
+            int a = s[i]-'0';
+            // cout<<a<<endl;
+                for (int j = 0; j < a; ++j)
+                {
+                    str+="(";
+                    left++;
+                }
+                str+=s[i];
+            }
+            else{
+                if(s[i-1]>s[i]){
+                    int x = s[i-1]-s[i];
+                    while(x--)str+=")",left--;
+                    str+=s[i];
+                }
+                else if(s[i-1]<s[i]){
+                    int x = s[i]-s[i-1];
+                    while(x--)str+="(",left++;
+                    str+=s[i];
+                }
+                else str+=s[i];
+            }
         }
-        cout<<c<<endl;
+        // str+=s[l-1];
+        int x = s[l-1]-'0';
+        while(x--)str+=")";
+        cout<<str<<endl;
     }
     return 0;
 }

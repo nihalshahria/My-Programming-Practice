@@ -71,16 +71,12 @@ void seive () {
         }
     }
 }
-std::map<pii , int> mp;
 int main(){
     seive();
     int n;
     while(sf(n)&&n){
         int c = 0;
-        for (int i = 0; i != sz(prime) && prime[i]<=n/2; ++i)
-        {
-            if(!is_composite[n-prime[i]])c++;
-        }
+        for (int i = 0; i != sz(prime) && prime[i]<=n/2; ++i)if(!is_composite[n-prime[i]])c++;
         cout<<c<<endl;
     }
     return 0;

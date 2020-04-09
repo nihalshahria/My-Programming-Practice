@@ -58,17 +58,29 @@ const db PI = acos(-1); //3.14159265358979323846264338328
 //const int fy[]={-1,  1, -2,  2, -2,  2, -1,  1}; // Knights Move
 /*---------------------------------------------------------------------*/
 using namespace std;
+int n, sum;
+int a[105];
+int dp[105][25010];
+int DP(int pos, int c){
+    if(pos==n)return Abs(c-(sum-c));
+    if(dp[pos][c]!=-1)return dp[pos][c];
+    int x1 = INT_MAX, x2 = INT_MAX;
+    if(c+a[pos]<=25000){
+        x1 = DP(pos+1, c+a[pos]);
+    }
+    x2 = DP(pos+1,c);
+    return dp[pos][c] = MIN(x1,x2);
+}
 int main(){
     int t;
     sf(t);
     while(t--){
-        int n;
         sf(n);
-        int a[n];
-        for (int i = 0; i < n; ++i)sf(a[i]);
-        sort(a,a+n);
-        for (int i = n-1; i >= 0; --i)cout<<a[i]<<" ";
-        cout<<endl;
+        sum = 0;
+        for (int i = 0; i < n; ++i)sf(a[i]),sum+=a[i];
+        MEM(dp,-1);
+        // int ans = DP(0,0);
+    cout<<DP(0,0)<<endl;
     }
     return 0;
 }

@@ -31,21 +31,21 @@
 #define fr(i,x,n)           for(int i=x;i<n;i++)
 #define rfr(i,x,n)          for(int i=x;i>n;i--)
 #define LCM(a, b)           ((a)*((b)/GCD(a,b)))
-template<typename T>T Abs(T a){return (a<0?-a:a);}
-template<typename T>T MAX(T a, T b){return (a>b?a:b);}
-template<typename T>T MIN(T a, T b){return (a<b?a:b);}
-template<typename T>T GCD(T a, T b){if(b==0)return a;return GCD(b,a%b);}
-template<typename T>inline void read(T &x){
-    T f=1;char c;x=0;
-    for(c=getchar();c<'0'||c>'9';c=getchar())if(c=='-')f=-1;
-    for(;c>='0'&&c<='9';c=getchar())x=x*10+c-'0';
-    x*=f;
+template<typename T>T Abs(T a) {return (a < 0 ? -a : a);}
+template<typename T>T MAX(T a, T b) {return (a > b ? a : b);}
+template<typename T>T MIN(T a, T b) {return (a < b ? a : b);}
+template<typename T>T GCD(T a, T b) {if (b == 0)return a; return GCD(b, a % b);}
+template<typename T>inline void read(T &x) {
+    T f = 1; char c; x = 0;
+    for (c = getchar(); c < '0' || c > '9'; c = getchar())if (c == '-')f = -1;
+    for (; c >= '0' && c <= '9'; c = getchar())x = x * 10 + c - '0';
+    x *= f;
 }
 using fl = float;
 using db = double;
 using ll = long long;
 using ull = unsigned long long;
-const int mx = 32778;
+const int mx = 1000005;
 const int inf = 99999999;
 const int intlim = 2147483648;
 const db PI = acos(-1); //3.14159265358979323846264338328
@@ -58,30 +58,26 @@ const db PI = acos(-1); //3.14159265358979323846264338328
 //const int fy[]={-1,  1, -2,  2, -2,  2, -1,  1}; // Knights Move
 /*---------------------------------------------------------------------*/
 using namespace std;
-// #define mx                  1000006
-std::vector <int> prime;
-bool is_composite[mx];
-void seive () {
-    std::fill (is_composite, is_composite + mx, false);
-    for (int i = 2; i < mx; ++i) {
-        if (!is_composite[i])prime.push_back (i);
-        for (int j = 0; j < prime.size () && i * prime[j] < mx; ++j) {
-            is_composite[i * prime[j]] = true;
-            if (i % prime[j] == 0) break;
-        }
-    }
+int n, sum;
+int a[105];
+int dp[105][25010];
+int DP(int pos, int c) {
+    if (pos == n)return Abs(c - (sum - c));
+    if (dp[pos][c] != -1)return dp[pos][c];
+    int x1 = INT_MAX, x2 = INT_MAX;
+    if (c + a[pos] <= 25000) x1 = DP(pos + 1, c + a[pos]);
+    x2 = DP(pos + 1, c);
+    return dp[pos][c] = MIN(x1, x2);
 }
-std::map<pii , int> mp;
-int main(){
-    seive();
-    int n;
-    while(sf(n)&&n){
-        int c = 0;
-        for (int i = 0; i != sz(prime) && prime[i]<=n/2; ++i)
-        {
-            if(!is_composite[n-prime[i]])c++;
-        }
-        cout<<c<<endl;
+int main() {
+    int t;
+    sf(t);
+    while (t--) {
+        sf(n);
+        sum = 0;
+        for (int i = 0; i < n; ++i)sf(a[i]), sum += a[i];
+        MEM(dp, -1);
+        cout << DP(0, 0) << endl;
     }
     return 0;
 }
