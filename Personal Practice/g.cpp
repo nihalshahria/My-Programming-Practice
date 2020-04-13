@@ -62,21 +62,17 @@ int main(){
     int t;
     sf(t);
     while(t--){
-        int n;
-        sf(n);
-        int a[n];
-        for (int i = 0; i < n; ++i)
-        {
-            sf(a[i]);
+        getchar();
+        string str[9];
+        for (int i = 0; i < 9; ++i)cin>>str[i];
+        for (int i = 0,j = 0; i < 9; i++,j+=3){
+            cout<<i<<" "<<j<<endl;
+            if(i!=8)str[i][j] = str[i][j+1];
+            else str[i][j] = str[i][j-1];
+            // cout<<str[i]<<endl;
+            if(j==6)j = 1;
+            if(j==7)j = 2;
         }
-        sort(a,a+n);
-        int x = a[n/2];
-        int ans = 0;
-        for (int i = 0; i < n; ++i)
-        {
-            ans+=abs(a[i]-x);
-        }
-        cout<<ans<<endl;
     }
     return 0;
 }

@@ -59,32 +59,6 @@ const db PI = acos(-1); //3.14159265358979323846264338328
 /*---------------------------------------------------------------------*/
 using namespace std;
 int main(){
-    int p, t, s;
-    sfff(p,t,s);
-    int ac[t+1][p+1]={};
-    std::map<char, pair<int, int> > mp;
-    for (int i = 0; i < s; ++i)
-    {
-        int time, team;
-        string verd;
-        char prb;
-        sff(time,team);
-        cin>>prb>>verd;
-        if(verd[0]=='Y'){
-            if(ac[team][prb-'A'+1]==0){
-                ac[team][prb-'A'+1]=1;
-                mp[prb]=mp(time,team);
-            }
-        }
-    }
-    for (int i = 0; i < p; ++i)
-    {
-        cout<<(char)('A'+i)<<" ";
-        if(mp['A'+i].second){
-            cout<<mp['A'+i].first<<" "<<mp['A'+i].second;
-        }
-        else cout<<"- -";
-        cout<<endl;
-    }
+
     return 0;
 }

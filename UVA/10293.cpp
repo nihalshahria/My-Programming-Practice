@@ -31,15 +31,15 @@
 #define fr(i,x,n)           for(int i=x;i<n;i++)
 #define rfr(i,x,n)          for(int i=x;i>n;i--)
 #define LCM(a, b)           ((a)*((b)/GCD(a,b)))
-template<typename T>T Abs(T a){return (a<0?-a:a);}
-template<typename T>T MAX(T a, T b){return (a>b?a:b);}
-template<typename T>T MIN(T a, T b){return (a<b?a:b);}
-template<typename T>T GCD(T a, T b){if(b==0)return a;return GCD(b,a%b);}
-template<typename T>inline void read(T &x){
-    T f=1;char c;x=0;
-    for(c=getchar();c<'0'||c>'9';c=getchar())if(c=='-')f=-1;
-    for(;c>='0'&&c<='9';c=getchar())x=x*10+c-'0';
-    x*=f;
+template<typename T>T Abs(T a) {return (a < 0 ? -a : a);}
+template<typename T>T MAX(T a, T b) {return (a > b ? a : b);}
+template<typename T>T MIN(T a, T b) {return (a < b ? a : b);}
+template<typename T>T GCD(T a, T b) {if (b == 0)return a; return GCD(b, a % b);}
+template<typename T>inline void read(T &x) {
+    T f = 1; char c; x = 0;
+    for (c = getchar(); c < '0' || c > '9'; c = getchar())if (c == '-')f = -1;
+    for (; c >= '0' && c <= '9'; c = getchar())x = x * 10 + c - '0';
+    x *= f;
 }
 using fl = float;
 using db = double;
@@ -58,26 +58,27 @@ const db PI = acos(-1); //3.14159265358979323846264338328
 //const int fy[]={-1,  1, -2,  2, -2,  2, -1,  1}; // Knights Move
 /*---------------------------------------------------------------------*/
 using namespace std;
-int main(){
-    int n;
-    sf(n);
-    int a[n];
-    for (int i = 0; i < n; ++i)
-    {
-        sf(a[i]);
-    }
-    ll x = -1;
-    ll ans = 0;
-    int m;
-    sf(m);
-    while(m--){
-        int h, w;
-        sff(w,h);
-        if(w>x)
-            if(ans<a[w-1])
-                x = w;
-        cout<<ans<<" ";
-        ans+=h;
+int main() {
+    string s, str;
+    while (getline(cin, str)) {
+        if (str != "#") {
+            s += str;
+            if (str[sz(str) - 1] == '-')continue;
+            else s+=" ";
+        }
+        else{
+            int a[100]={0};
+            int l = 0;
+            for (int i = 0; i < sz(s); ++i){
+                if(s[i]=='\''|| s[i]=='-')continue;
+                else if(isalpha(s[i]))l++;
+                else a[l]++,l=0;
+            }
+            for (int i = 1; i < 100; ++i)
+                if(a[i])printf("%d %d\n", i,a[i]);
+            printf("\n");
+            s="";
+        }
     }
     return 0;
 }

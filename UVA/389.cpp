@@ -59,25 +59,32 @@ const db PI = acos(-1); //3.14159265358979323846264338328
 /*---------------------------------------------------------------------*/
 using namespace std;
 int main(){
-    int n;
-    sf(n);
-    int a[n];
-    for (int i = 0; i < n; ++i)
-    {
-        sf(a[i]);
-    }
-    ll x = -1;
-    ll ans = 0;
-    int m;
-    sf(m);
-    while(m--){
-        int h, w;
-        sff(w,h);
-        if(w>x)
-            if(ans<a[w-1])
-                x = w;
-        cout<<ans<<" ";
-        ans+=h;
+    string k = ("0123456789ABCDEF");
+    string str1,str2;
+    int a,b,c,d,e;
+    while(cin>>str1>>a>>b){
+        str2 = "";
+        e = 0;
+        c = 1;
+        d = sz(str1)-1;
+
+        for (int i = d; i >=0 ; i--,c*=a)
+        {
+            for(int j = 0; j<sz(k); j++){
+                if(k[j]==str1[i]){
+                    e+=c*j;
+                    break;
+                }
+            }
+        }
+        if(e==0)str2 = "0";
+        while(e){
+            str2+=k[e%b];
+            e/=b;
+        }
+        reverse(str2.begin(), str2.end());
+        if(sz(str2)<=7)printf("%7s\n",str2.c_str());
+        else cout<<"  ERROR"<<endl;
     }
     return 0;
 }

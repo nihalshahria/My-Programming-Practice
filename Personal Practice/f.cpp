@@ -59,37 +59,19 @@ const db PI = acos(-1); //3.14159265358979323846264338328
 /*---------------------------------------------------------------------*/
 using namespace std;
 int main(){
-    int t, z=1;
-    while(~sf(t)&& t){
-        printf("Scenario #%d\n", z++);
-        std::map<int, int> tm;
-        for (int i = 1; i <= t; ++i)
-        {
-            int m,x;
-            sf(m);
-            while(m--){
-                sf(x),tm[x]=i;
-            }
-        }
-        string str;
-        queue<int> ind[1005], all;
-        while(cin>>str){
-            if(str[0]=='S')break;
-            if(str[0]=='E'){
-                int x;
-                sf(x);
-                int z = tm[x];
-                if(ind[z].empty())all.push(z);
-                ind[z].push(x);
-            }
-            else {
-                int z = all.front();
-                printf("%d\n", ind[z].front());
-                ind[z].pop();
-                if(ind[z].empty())all.pop();
-            }
-        }
-        printf("\n");
+    int t;
+    sf(t);
+    while(t--){
+        int n, a,b;
+        sfff(n,a,b);
+        string s1 ="", s2 = "";
+        char c;
+        for (int i = 0; i < b; ++i)c = ('a'+i),s1+=c;
+        int x = a-b;
+        for (int i = 0; i < x; ++i)s1+=c;
+        for (int i = 0; i < n/a; ++i)s2+=s1;
+        for (int i = 0; i < n%a; ++i)s2+=s1[i];
+        cout<<s2<<endl;
     }
     return 0;
 }

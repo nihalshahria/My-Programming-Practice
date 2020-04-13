@@ -60,24 +60,15 @@ const db PI = acos(-1); //3.14159265358979323846264338328
 using namespace std;
 int main(){
     int n;
+    std::map<string, int> mp;
+    string city, lady;
     sf(n);
-    int a[n];
-    for (int i = 0; i < n; ++i)
-    {
-        sf(a[i]);
+    for (int i = 0; i < n; ++i){
+        cin>>city;
+        getline(cin,lady);
+        mp[city]++;
     }
-    ll x = -1;
-    ll ans = 0;
-    int m;
-    sf(m);
-    while(m--){
-        int h, w;
-        sff(w,h);
-        if(w>x)
-            if(ans<a[w-1])
-                x = w;
-        cout<<ans<<" ";
-        ans+=h;
-    }
+    for (std::map<string, int>::iterator i = mp.begin(); i != mp.end(); ++i)
+        cout<<i->first<<" "<<i->second<<"\n";
     return 0;
 }
