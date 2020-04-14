@@ -9,6 +9,15 @@
          |__|     \_____| |__| |__|    |__| /_/        \_\ |____________|
 */
 #include <bits/stdc++.h>
+/*---------------------------------PB_DS---------------------------------*/
+// #include <ext/pb_ds/assoc_container.hpp>
+// #include <ext/pb_ds/tree_policy.hpp>
+// using namespace __gnu_pbds;
+// #define ordered_set tree<int, null_type,less<int>, rb_tree_tag,tree_order_statistics_node_update>
+// #define ordered_multiset tree<pair<int, int>, null_type,less<pair<int, int> >, rb_tree_tag,tree_order_statistics_node_update>
+// find_by_order(k) = returns an iterator to the k-th largest element (counting from zero)
+// order_of_key(k) = the number of items in a set that are strictly smaller than k.
+/*-----------------------------------------------------------------------*/
 #define sf(a)               scanf("%d",&a)
 #define sfl(a)              scanf("%lld",&a)
 #define sff(a,b)            scanf("%d %d",&a,&b)
@@ -59,19 +68,28 @@ const db PI = acos(-1); //3.14159265358979323846264338328
 /*---------------------------------------------------------------------*/
 using namespace std;
 int main(){
-    int t;
-    sf(t);
-    while(t--){
-        int n, a,b;
-        sfff(n,a,b);
-        string s1 ="", s2 = "";
-        char c;
-        for (int i = 0; i < b; ++i)c = ('a'+i),s1+=c;
-        int x = a-b;
-        for (int i = 0; i < x; ++i)s1+=c;
-        for (int i = 0; i < n/a; ++i)s2+=s1;
-        for (int i = 0; i < n%a; ++i)s2+=s1[i];
-        cout<<s2<<endl;
+    string s1, s2;
+    while(cin>>s1){
+        cin>>s2;
+        reverse(s1.begin(), s1.end());
+        reverse(s2.begin(), s2.end());
+        int a[550]={};
+        for (int i = 0; i < sz(s1); ++i)
+        {
+            for (int j = 0; j < sz(s2); ++j)
+            {
+                a[i+j]+=(s1[i]-'0')*(s2[j]-'0');
+            }
+        }
+        for (int i = 0; i < 549; ++i)
+        {
+            a[i+1]+=a[i]/10;
+            a[i]%=10;
+        }
+        int x = 549;
+        while(x>0&&a[x]==0)x--;
+        while(x-->=0)cout<<a[x+1];
+        cout<<endl;
     }
     return 0;
 }

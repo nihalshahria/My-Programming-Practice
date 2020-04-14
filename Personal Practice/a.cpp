@@ -9,6 +9,15 @@
          |__|     \_____| |__| |__|    |__| /_/        \_\ |____________|
 */
 #include <bits/stdc++.h>
+/*---------------------------------PB_DS---------------------------------*/
+// #include <ext/pb_ds/assoc_container.hpp>
+// #include <ext/pb_ds/tree_policy.hpp>
+// using namespace __gnu_pbds;
+// #define ordered_set tree<int, null_type,less<int>, rb_tree_tag,tree_order_statistics_node_update>
+// #define ordered_multiset tree<pair<int, int>, null_type,less<pair<int, int> >, rb_tree_tag,tree_order_statistics_node_update>
+// find_by_order(k) = returns an iterator to the k-th largest element (counting from zero)
+// order_of_key(k) = the number of items in a set that are strictly smaller than k.
+/*-----------------------------------------------------------------------*/
 #define sf(a)               scanf("%d",&a)
 #define sfl(a)              scanf("%lld",&a)
 #define sff(a,b)            scanf("%d %d",&a,&b)
@@ -59,6 +68,27 @@ const db PI = acos(-1); //3.14159265358979323846264338328
 /*---------------------------------------------------------------------*/
 using namespace std;
 int main(){
-
+    int n;
+    sf(n);
+    int a[n];
+    int fs = -1, ls = 0;
+    int c = 0;
+    int m = 0;
+    for (int i = 0; i < n; ++i)
+    {
+        sf(a[i]);
+        if(!a[i]){
+            if(fs==-1)fs = m;
+            c = MAX(c,m),m=0;
+        }
+        else m++;
+    }
+    int x = n-1;
+    int cnt = 0;
+    while(a[x--]!=0)cnt++;;
+    // cout<<c<<endl;
+    // cout<<fs<<endl;
+    // cout<<cnt<<endl;
+    cout<<MAX(fs+cnt,c)<<endl;
     return 0;
 }

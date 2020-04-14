@@ -59,22 +59,35 @@ const db PI = acos(-1); //3.14159265358979323846264338328
 /*---------------------------------------------------------------------*/
 using namespace std;
 int main(){
-    string s1,s2;
-    while(getline(cin,s1)){
+    int t;
+    sf(t);
+        getchar();
+    while(t--){
+        string str[5];
+        str[0] = "";
+        str[1] = "";
+        str[2] = "";
+        str[3] = "";
+        str[4] = "";
+        int f = 0;
+        string s1;
+        getline(cin,s1);
+        int i;
+        for (i = 0; i < sz(s1)&& s1[i]!='<'; ++i)str[0]+=s1[i];
+        i++;
+        for (; i < sz(s1)&&s1[i]!='>'; ++i)str[1] += s1[i];
+        i++;
+        for (; i < sz(s1)&& s1[i]!='<'; ++i)str[2]+=s1[i];
+        i++;
+        for (; i < sz(s1)&&s1[i]!='>'; ++i)str[3] += s1[i];
+        i++;
+        for (; i < sz(s1); ++i)str[4] += s1[i];
+        for (int i = 0; i < 5; ++i)cout<<str[i];
+        cout<<endl;
+        string s2,str2="";
         getline(cin,s2);
-        stringstream a1(s1), a2(s2);
-        ll n1=0, n2=0, n,sam = 0;
-        std::map<ll, ll> mp1, mp2;
-        while(a1>>n)n1++, mp1[n]++;
-        while(a2>>n){
-            n2++,mp1[n]++;
-            if(mp1[n]==2)sam++;
-        }
-        if(sam == n1 && n2>n1) printf("A is a proper subset of B\n");
-        else if(sam == n2 && n1>n2)printf("B is a proper subset of A\n");
-        else if(sam == n2 && n1==n2)printf("A equals B\n");
-        else if(sam==0)printf("A and B are disjoint\n");
-        else printf("I'm confused!\n");
+        for (int i = 0; i < sz(s2)&& s2[i]!='.'; ++i)str2+=s2[i];
+        cout<<str2<<str[3]<<str[2]<<str[1]<<str[4]<<endl;
     }
     return 0;
 }
