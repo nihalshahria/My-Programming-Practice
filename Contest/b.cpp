@@ -68,19 +68,6 @@ const db PI = acos(-1); //3.14159265358979323846264338328
 /*---------------------------------------------------------------------*/
 using namespace std;
 int main(){
-    int t;
-    sf(t);
-    printf("Lumberjacks:\n");
-    while(t--){
-        int a[10];
-        int in = 0, de = 0;
-        for (int i = 0; i < 10; ++i)sf(a[i]);
-        for (int i = 1; i < 10; ++i){
-            if(a[i-1]<a[i])in = 1;
-            if(a[i-1]>a[i])de = 1;
-        }
-        if(in && de)printf("Unordered\n");
-        else printf("Ordered\n");
-    }
+
     return 0;
 }

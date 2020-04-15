@@ -40,15 +40,15 @@
 #define fr(i,x,n)           for(int i=x;i<n;i++)
 #define rfr(i,x,n)          for(int i=x;i>n;i--)
 #define LCM(a, b)           ((a)*((b)/GCD(a,b)))
-template<typename T>T Abs(T a){return (a<0?-a:a);}
-template<typename T>T MAX(T a, T b){return (a>b?a:b);}
-template<typename T>T MIN(T a, T b){return (a<b?a:b);}
-template<typename T>T GCD(T a, T b){if(b==0)return a;return GCD(b,a%b);}
-template<typename T>inline void read(T &x){
-    T f=1;char c;x=0;
-    for(c=getchar();c<'0'||c>'9';c=getchar())if(c=='-')f=-1;
-    for(;c>='0'&&c<='9';c=getchar())x=x*10+c-'0';
-    x*=f;
+template<typename T>T Abs(T a) {return (a < 0 ? -a : a);}
+template<typename T>T MAX(T a, T b) {return (a > b ? a : b);}
+template<typename T>T MIN(T a, T b) {return (a < b ? a : b);}
+template<typename T>T GCD(T a, T b) {if (b == 0)return a; return GCD(b, a % b);}
+template<typename T>inline void read(T &x) {
+    T f = 1; char c; x = 0;
+    for (c = getchar(); c < '0' || c > '9'; c = getchar())if (c == '-')f = -1;
+    for (; c >= '0' && c <= '9'; c = getchar())x = x * 10 + c - '0';
+    x *= f;
 }
 using fl = float;
 using db = double;
@@ -67,20 +67,53 @@ const db PI = acos(-1); //3.14159265358979323846264338328
 //const int fy[]={-1,  1, -2,  2, -2,  2, -1,  1}; // Knights Move
 /*---------------------------------------------------------------------*/
 using namespace std;
-int main(){
-    int t;
-    sf(t);
-    printf("Lumberjacks:\n");
-    while(t--){
-        int a[10];
-        int in = 0, de = 0;
-        for (int i = 0; i < 10; ++i)sf(a[i]);
-        for (int i = 1; i < 10; ++i){
-            if(a[i-1]<a[i])in = 1;
-            if(a[i-1]>a[i])de = 1;
-        }
-        if(in && de)printf("Unordered\n");
-        else printf("Ordered\n");
+pii arr[10010];
+std::vector<int > v[10010];
+int vis[10010];
+int ind, t;
+void dfs1(int u) {
+    vis[u] = 1;
+    t++;
+    for (int i = 0; i < sz(v[u]); ++i)
+        if (!vis[v[u][i]])
+            dfs1(v[u][i]);
+    t++;
+    cout<<ind<<" "<<u<<" "<<t<<endl;
+    arr[ind].X = u;
+    arr[ind++].Y = t;
+}
+void dfs2(int u) {
+    vis[u] = 1;
+    for (int i = 0; i < sz(v[u]); ++i)
+        if (!vis[v[u][i]])
+            dfs2(v[u][i]);
+}
+bool cmp(pii a, pii b) {
+    return a.Y > b.Y;
+}
+int main() {
+    int tst, z = 1;
+    sf(tst);
+    while (tst--) {
+        printf("Case %d: ", z++);
+        int n, m;
+        sff(n, m);
+        for (int i = 0, a, b; i < m; ++i)
+            sff(a, b), v[a].pb(b);
+        MEM(vis, 0);
+        ind = 0;
+        t = 0;
+        for (int i = 1; i <= n; ++i)
+            if (!vis[i])
+                dfs1(i);
+        sort(arr, arr + ind, cmp);
+        int ans = 0;
+        MEM(vis, 0);
+        for (int i = 0; i < ind; ++i)
+            if (!vis[arr[i].X])
+                ans++, dfs2(arr[i].X);
+        printf("%d\n", ans);
+        for (int i = 0; i < 10010; ++i)v[i].clear();
     }
     return 0;
 }

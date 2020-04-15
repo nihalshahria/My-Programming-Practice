@@ -40,15 +40,15 @@
 #define fr(i,x,n)           for(int i=x;i<n;i++)
 #define rfr(i,x,n)          for(int i=x;i>n;i--)
 #define LCM(a, b)           ((a)*((b)/GCD(a,b)))
-template<typename T>T Abs(T a){return (a<0?-a:a);}
-template<typename T>T MAX(T a, T b){return (a>b?a:b);}
-template<typename T>T MIN(T a, T b){return (a<b?a:b);}
-template<typename T>T GCD(T a, T b){if(b==0)return a;return GCD(b,a%b);}
-template<typename T>inline void read(T &x){
-    T f=1;char c;x=0;
-    for(c=getchar();c<'0'||c>'9';c=getchar())if(c=='-')f=-1;
-    for(;c>='0'&&c<='9';c=getchar())x=x*10+c-'0';
-    x*=f;
+template<typename T>T Abs(T a) {return (a < 0 ? -a : a);}
+template<typename T>T MAX(T a, T b) {return (a > b ? a : b);}
+template<typename T>T MIN(T a, T b) {return (a < b ? a : b);}
+template<typename T>T GCD(T a, T b) {if (b == 0)return a; return GCD(b, a % b);}
+template<typename T>inline void read(T &x) {
+    T f = 1; char c; x = 0;
+    for (c = getchar(); c < '0' || c > '9'; c = getchar())if (c == '-')f = -1;
+    for (; c >= '0' && c <= '9'; c = getchar())x = x * 10 + c - '0';
+    x *= f;
 }
 using fl = float;
 using db = double;
@@ -67,30 +67,24 @@ const db PI = acos(-1); //3.14159265358979323846264338328
 //const int fy[]={-1,  1, -2,  2, -2,  2, -1,  1}; // Knights Move
 /*---------------------------------------------------------------------*/
 using namespace std;
-int main(){
-    int t, a, b, c;
-    sf(t);
-    while(t--){
-        int bric[10][10];
-        for (int i = 1; i < 10; i+=2)
-            for(int j = 1; j<=i; j+=2)
-                sf(bric[i][j]);
-        for (int i = 3; i < 10; i+=2)
-            for (int j = 2; j <= i; j+=2)
-            {
-                a = bric[i][j-1];
-                b = bric[i][j+1];
-                c = bric[i-2][j-1];
-                bric[i][j] = (c-a-b)/2;
-                bric[i-1][j-1] = bric[i][j]+bric[i][j-1];
-                bric[i-1][j] = bric[i][j]+bric[i][j+1];
-            }
-            for (int i = 1; i < 10; i++){
-                for(int j = 1; j<=i; j++){
-                    printf("%d", bric[i][j]);
-                    printf((i==j)?"\n":" ");
-                }
-            }
+int main() {
+    int n;
+    while (sf(n) && n) {
+        getchar();
+        string s[n];
+        int a[n] = {};
+        for (int i = 0; i < n; ++i)getline(cin,s[i]);
+        for (int i = 0; i < n; ++i) {
+            int c = 0;
+            for (int j = 0; j < 25; ++j)
+                if (s[i][j] == 'X')c++;
+            a[i] = c;
+        }
+        int maxi = 0;
+        for (int i = 0; i < n; ++i)maxi = MAX(a[i], maxi);
+        int ans = 0;
+        for (int i = 0; i < n; ++i)ans += (maxi - a[i]);
+        cout << ans << endl;
     }
     return 0;
 }

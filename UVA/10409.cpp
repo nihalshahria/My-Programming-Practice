@@ -9,6 +9,15 @@
          |__|     \_____| |__| |__|    |__| /_/        \_\ |____________|
 */
 #include <bits/stdc++.h>
+/*---------------------------------PB_DS---------------------------------*/
+// #include <ext/pb_ds/assoc_container.hpp>
+// #include <ext/pb_ds/tree_policy.hpp>
+// using namespace __gnu_pbds;
+// #define ordered_set tree<int, null_type,less<int>, rb_tree_tag,tree_order_statistics_node_update>
+// #define ordered_multiset tree<pair<int, int>, null_type,less<pair<int, int> >, rb_tree_tag,tree_order_statistics_node_update>
+// find_by_order(k) = returns an iterator to the k-th largest element (counting from zero)
+// order_of_key(k) = the number of items in a set that are strictly smaller than k.
+/*-----------------------------------------------------------------------*/
 #define sf(a)               scanf("%d",&a)
 #define sfl(a)              scanf("%lld",&a)
 #define sff(a,b)            scanf("%d %d",&a,&b)
@@ -59,38 +68,27 @@ const db PI = acos(-1); //3.14159265358979323846264338328
 /*---------------------------------------------------------------------*/
 using namespace std;
 int main(){
-    int t;
-    sf(t);
-        getchar();
-    while(t--){
-        string str[5];
-        str[0] = "";
-        str[1] = "";
-        str[2] = "";
-        str[3] = "";
-        str[4] = "";
-        int f = 0;
-        string s1;
-        getline(cin,s1);
-        int i;
-        for (i = 0; i < sz(s1)&& s1[i]!='<'; ++i)str[0]+=s1[i];
-        i++;
-        for (; i < sz(s1)&&s1[i]!='>'; ++i)str[1] += s1[i];
-        i++;
-        for (; i < sz(s1)&& s1[i]!='<'; ++i)str[2]+=s1[i];
-        i++;
-        for (; i < sz(s1)&&s1[i]!='>'; ++i)str[3] += s1[i];
-        i++;
-        for (; i < sz(s1); ++i)str[4] += s1[i];
-        for (int i = 0; i < 5; ++i)cout<<str[i];
-        cout<<endl;
-        string s2,str2="";
-        getline(cin,s2);
-        for (int i = 0; i < sz(s2)&& s2[i]!='.'; ++i)
+    int n;
+    while(sf(n)&& n){
+        int top = 1, north = 2, east = 4, west = 3, south = 5, bottom = 6;
+        for (int i = 0; i < n; ++i)
         {
-            str2+=s2[i];
+            string str;
+            cin>>str;
+            if(str=="north"){
+                swap(top,south),swap(south,north),swap(south,bottom);
+            }
+            else if(str=="south"){
+                swap(top,north),swap(south,north),swap(bottom,north);
+            }
+            else if(str=="east"){
+                swap(top,west),swap(west,east),swap(west,bottom);
+            }
+            else if(str=="west"){
+                swap(top,east),swap(east,west),swap(east,bottom);
+            }
         }
-        cout<<str2<<str[3]<<str[2]<<str[1]<<str[4]<<endl;
+        cout<<top<<endl;
     }
     return 0;
 }

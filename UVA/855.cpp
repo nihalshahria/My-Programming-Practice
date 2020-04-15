@@ -68,27 +68,17 @@ const db PI = acos(-1); //3.14159265358979323846264338328
 /*---------------------------------------------------------------------*/
 using namespace std;
 int main(){
-    int n;
-    sf(n);
-    int a[n];
-    int fs = -1, ls = 0;
-    int c = 0;
-    int m = 0;
-    for (int i = 0; i < n; ++i)
-    {
-        sf(a[i]);
-        if(!a[i]){
-            if(fs==-1)fs = m;
-            c = MAX(c,m),m=0;
-        }
-        else m++;
+    int t;
+    sf(t);
+    while(t--){
+        int n, m, f;
+        sfff(n,m,f);
+        int str[f];
+        int ave[f];
+        for (int i = 0; i < f; ++i)sff(str[i],ave[i]);
+        sort(str, str+f);
+        sort(ave, ave+f);
+        printf("(Street: %d, Avenue: %d)\n", str[(f-1)/2], ave[(f-1)/2]);
     }
-    int x = n-1;
-    int cnt = 0;
-    while(a[x--]!=0)cnt++;;
-    // cout<<c<<endl;
-    // cout<<fs<<endl;
-    // cout<<cnt<<endl;
-    cout<<MAX(fs+cnt,c)<<endl;
     return 0;
 }

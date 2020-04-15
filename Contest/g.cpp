@@ -9,6 +9,15 @@
          |__|     \_____| |__| |__|    |__| /_/        \_\ |____________|
 */
 #include <bits/stdc++.h>
+/*---------------------------------PB_DS---------------------------------*/
+// #include <ext/pb_ds/assoc_container.hpp>
+// #include <ext/pb_ds/tree_policy.hpp>
+// using namespace __gnu_pbds;
+// #define ordered_set tree<int, null_type,less<int>, rb_tree_tag,tree_order_statistics_node_update>
+// #define ordered_multiset tree<pair<int, int>, null_type,less<pair<int, int> >, rb_tree_tag,tree_order_statistics_node_update>
+// find_by_order(k) = returns an iterator to the k-th largest element (counting from zero)
+// order_of_key(k) = the number of items in a set that are strictly smaller than k.
+/*-----------------------------------------------------------------------*/
 #define sf(a)               scanf("%d",&a)
 #define sfl(a)              scanf("%lld",&a)
 #define sff(a,b)            scanf("%d %d",&a,&b)
@@ -31,15 +40,15 @@
 #define fr(i,x,n)           for(int i=x;i<n;i++)
 #define rfr(i,x,n)          for(int i=x;i>n;i--)
 #define LCM(a, b)           ((a)*((b)/GCD(a,b)))
-template<typename T>T Abs(T a){return (a<0?-a:a);}
-template<typename T>T MAX(T a, T b){return (a>b?a:b);}
-template<typename T>T MIN(T a, T b){return (a<b?a:b);}
-template<typename T>T GCD(T a, T b){if(b==0)return a;return GCD(b,a%b);}
-template<typename T>inline void read(T &x){
-    T f=1;char c;x=0;
-    for(c=getchar();c<'0'||c>'9';c=getchar())if(c=='-')f=-1;
-    for(;c>='0'&&c<='9';c=getchar())x=x*10+c-'0';
-    x*=f;
+template<typename T>T Abs(T a) {return (a < 0 ? -a : a);}
+template<typename T>T MAX(T a, T b) {return (a > b ? a : b);}
+template<typename T>T MIN(T a, T b) {return (a < b ? a : b);}
+template<typename T>T GCD(T a, T b) {if (b == 0)return a; return GCD(b, a % b);}
+template<typename T>inline void read(T &x) {
+    T f = 1; char c; x = 0;
+    for (c = getchar(); c < '0' || c > '9'; c = getchar())if (c == '-')f = -1;
+    for (; c >= '0' && c <= '9'; c = getchar())x = x * 10 + c - '0';
+    x *= f;
 }
 using fl = float;
 using db = double;
@@ -58,23 +67,24 @@ const db PI = acos(-1); //3.14159265358979323846264338328
 //const int fy[]={-1,  1, -2,  2, -2,  2, -1,  1}; // Knights Move
 /*---------------------------------------------------------------------*/
 using namespace std;
-int main(){
-    string s1,s2;
-    while(getline(cin,s1)){
-        getline(cin,s2);
-        stringstream a1(s1), a2(s2);
-        ll n1=0, n2=0, n,sam = 0;
-        std::map<ll, ll> mp1, mp2;
-        while(a1>>n)n1++, mp1[n]++;
-        while(a2>>n){
-            n2++,mp1[n]++;
-            if(mp1[n]==2)sam++;
+int main() {
+    int n;
+    while (sf(n) && n) {
+        getchar();
+        string s[n];
+        int a[n] = {};
+        for (int i = 0; i < n; ++i)getline(cin,s[i]);
+        for (int i = 0; i < n; ++i) {
+            int c = 0;
+            for (int j = 0; j < 25; ++j)
+                if (s[i][j] == 'X')c++;
+            a[i] = c;
         }
-        if(sam == n1 && n2>n1) printf("A is a proper subset of B\n");
-        else if(sam == n2 && n1>n2)printf("B is a proper subset of A\n");
-        else if(sam == n2 && n1==n2)printf("A equals B\n");
-        else if(sam==0)printf("A and B are disjoint\n");
-        else printf("I'm confused!\n");
+        int maxi = 0;
+        for (int i = 0; i < n; ++i)maxi = MAX(a[i], maxi);
+        int ans = 0;
+        for (int i = 0; i < n; ++i)ans += (maxi - a[i]);
+        cout << ans << endl;
     }
     return 0;
 }
