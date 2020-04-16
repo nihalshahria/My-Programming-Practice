@@ -68,6 +68,17 @@ const db PI = acos(-1); //3.14159265358979323846264338328
 /*---------------------------------------------------------------------*/
 using namespace std;
 int main(){
-
+    int n,d;
+    sff(n,d);
+    int a[n]={};
+    for (int i = 0; i < n; ++i)
+        sf(a[i]);
+    ll ans=0, k = 0;
+    for (int i = 0; i < n; ++i)
+    {
+        k = lower_bound(a,a+n,a[i]-d)-a-i;
+        ans+=k*(k+1)/2;
+    }
+    printf("%lld\n", ans);
     return 0;
 }

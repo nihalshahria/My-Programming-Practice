@@ -2,8 +2,16 @@ package com.edureka;
 
 public class HelloWorld {
 
-    public static void main(String[] args) {
-	// write your code here
-        System.out.println("nihasd");
+    private void test() {
+        System.out.println("Working");
     }
+
+    public static void main(String[] args) {
+        // write your code here
+        ModifierTest hw = new ModifierTest();
+        hw.test001();
+        System.out.println("Hello World!!");
+        System.out.println(hw);
+    }
+
 }

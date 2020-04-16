@@ -40,15 +40,15 @@
 #define fr(i,x,n)           for(int i=x;i<n;i++)
 #define rfr(i,x,n)          for(int i=x;i>n;i--)
 #define LCM(a, b)           ((a)*((b)/GCD(a,b)))
-template<typename T>T Abs(T a) {return (a < 0 ? -a : a);}
-template<typename T>T MAX(T a, T b) {return (a > b ? a : b);}
-template<typename T>T MIN(T a, T b) {return (a < b ? a : b);}
-template<typename T>T GCD(T a, T b) {if (b == 0)return a; return GCD(b, a % b);}
-template<typename T>inline void read(T &x) {
-    T f = 1; char c; x = 0;
-    for (c = getchar(); c < '0' || c > '9'; c = getchar())if (c == '-')f = -1;
-    for (; c >= '0' && c <= '9'; c = getchar())x = x * 10 + c - '0';
-    x *= f;
+template<typename T>T Abs(T a){return (a<0?-a:a);}
+template<typename T>T MAX(T a, T b){return (a>b?a:b);}
+template<typename T>T MIN(T a, T b){return (a<b?a:b);}
+template<typename T>T GCD(T a, T b){if(b==0)return a;return GCD(b,a%b);}
+template<typename T>inline void read(T &x){
+    T f=1;char c;x=0;
+    for(c=getchar();c<'0'||c>'9';c=getchar())if(c=='-')f=-1;
+    for(;c>='0'&&c<='9';c=getchar())x=x*10+c-'0';
+    x*=f;
 }
 using fl = float;
 using db = double;
@@ -67,24 +67,35 @@ const db PI = acos(-1); //3.14159265358979323846264338328
 //const int fy[]={-1,  1, -2,  2, -2,  2, -1,  1}; // Knights Move
 /*---------------------------------------------------------------------*/
 using namespace std;
-int main() {
-    int n;
-    while (sf(n) && n) {
-        getchar();
-        string s[n];
-        int a[n] = {};
-        for (int i = 0; i < n; ++i)getline(cin,s[i]);
-        for (int i = 0; i < n; ++i) {
-            int c = 0;
-            for (int j = 0; j < 25; ++j)
-                if (s[i][j] == 'X')c++;
-            a[i] = c;
+int power(int x, int y) {
+    if (y == 0)return 1;
+    int temp = power(x, y / 2);
+    if (y % 2 == 0) return (temp * temp);    //Mod before multiplying, if needed
+    else return (x * temp * temp);          //Mod before multiplying, if needed
+}
+int main(){
+    int c = 0, ans[100000];
+    string str;
+    cin>>str;
+    int l = sz(str);
+    for (int i = 0; i < l; ++i)
+    {
+        while(str[i]>'0'){
+            int f = 0;
+            for (int j = i; j < l; ++j)
+            {
+                if(str[j]>'0'){
+                    str[j]--;
+                    f+=power(10,l-j-1);
+                }
+            }
+            ans[++c] = f;
         }
-        int maxi = 0;
-        for (int i = 0; i < n; ++i)maxi = MAX(a[i], maxi);
-        int ans = 0;
-        for (int i = 0; i < n; ++i)ans += (maxi - a[i]);
-        cout << ans << endl;
+    }
+    printf("%d\n", c);
+    for (int i = c; i >= 1; --i)
+    {
+        printf("%d ", ans[i]);
     }
     return 0;
 }
