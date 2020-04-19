@@ -1,4 +1,4 @@
-package com.edureka;
+package com.edureka.Class01;
 
 public class HelloWorld {
 

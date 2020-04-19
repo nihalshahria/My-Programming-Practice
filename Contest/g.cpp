@@ -67,35 +67,7 @@ const db PI = acos(-1); //3.14159265358979323846264338328
 //const int fy[]={-1,  1, -2,  2, -2,  2, -1,  1}; // Knights Move
 /*---------------------------------------------------------------------*/
 using namespace std;
-int power(int x, int y) {
-    if (y == 0)return 1;
-    int temp = power(x, y / 2);
-    if (y % 2 == 0) return (temp * temp);    //Mod before multiplying, if needed
-    else return (x * temp * temp);          //Mod before multiplying, if needed
-}
 int main(){
-    int c = 0, ans[100000];
-    string str;
-    cin>>str;
-    int l = sz(str);
-    for (int i = 0; i < l; ++i)
-    {
-        while(str[i]>'0'){
-            int f = 0;
-            for (int j = i; j < l; ++j)
-            {
-                if(str[j]>'0'){
-                    str[j]--;
-                    f+=power(10,l-j-1);
-                }
-            }
-            ans[++c] = f;
-        }
-    }
-    printf("%d\n", c);
-    for (int i = c; i >= 1; --i)
-    {
-        printf("%d ", ans[i]);
-    }
+
     return 0;
 }

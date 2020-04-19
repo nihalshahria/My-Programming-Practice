@@ -67,32 +67,53 @@ const db PI = acos(-1); //3.14159265358979323846264338328
 //const int fy[]={-1,  1, -2,  2, -2,  2, -1,  1}; // Knights Move
 /*---------------------------------------------------------------------*/
 using namespace std;
+int n,m,z;
+int arr[105];
+std::map<string, int> mp;
+string str[105];
+std::vector<int> v[105];
+void bfs(){
+    priority_queue<int, vector<int>, greater<int> >q;
+    for (int i = 1; i <= n; ++i)
+        if(arr[i]==0)q.push(i);
+    printf("Case #%d: Dilbert should drink beverages in this order:", ++z);
+    while(!q.empty()){
+        int t = q.top();
+        q.pop();
+        for (int i = 0; i < sz(v[t]); ++i){
+            arr[v[t][i]]--;
+            if(arr[v[t][i]]==0)q.push(v[t][i]);
+        }
+        cout<<" "<<str[t];
+    }
+    printf(".\n\n");
+}
 int main(){
-    int n, m;
-    while(sf(n)&& n){
+    while(~sf(n)){
+        for (int i = 1; i <= n; ++i)
+        {
+           cin>>str[i];
+           mp[str[i]] = i;
+        }
         sf(m);
-        int his[n+5][m+5] = {};
-        int a[n+5][m+5]={};
-        for (int i = 1; i <= n; ++i){
-            for (int j = 1; j <= m; ++j){
-                sf(a[i][j]);
-                if(a[i][j])his[i][j] = 0;
-                else his[i][j] = his[i][j-1]+1;
-                cout<<his[i][j]<<" ";
-            }
-            cout<<endl;
+        int a,b;
+        for (int i = 1; i <= m; ++i)
+        {
+            string s1,s2;
+            cin>>s1>>s2;
+            a = mp[s1];
+            b = mp[s2];
+            v[a].pb(b);
+            arr[b]++;
         }
-        int ans = 0;
-        for (int i = 1; i <= n; ++i){
-            for (int j = 1; j <= m; ++j){
-                int mini = his[i][j];
-                for (int k = i; k > 0 && mini; --k){
-                    mini = MIN(mini, his[k][j]);
-                    ans = MAX(ans, mini*(i-k+1));
-                }
-            }
+        bfs();
+        mp.clear();
+        memset(arr, 0, sizeof(arr));
+        for (int i = 0; i <= 105; ++i)
+        {
+            v[i].clear();
         }
-        printf("%d\n", ans);
+
     }
     return 0;
 }

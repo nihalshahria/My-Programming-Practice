@@ -68,31 +68,14 @@ const db PI = acos(-1); //3.14159265358979323846264338328
 /*---------------------------------------------------------------------*/
 using namespace std;
 int main(){
-    int n, m;
+    int n;
+    ll a[51];
+    a[1] = 1;
+    a[2] = 2;
+    for (int i = 3; i < 51; ++i)
+        a[i] = a[i-1]+a[i-2];
     while(sf(n)&& n){
-        sf(m);
-        int his[n+5][m+5] = {};
-        int a[n+5][m+5]={};
-        for (int i = 1; i <= n; ++i){
-            for (int j = 1; j <= m; ++j){
-                sf(a[i][j]);
-                if(a[i][j])his[i][j] = 0;
-                else his[i][j] = his[i][j-1]+1;
-                cout<<his[i][j]<<" ";
-            }
-            cout<<endl;
-        }
-        int ans = 0;
-        for (int i = 1; i <= n; ++i){
-            for (int j = 1; j <= m; ++j){
-                int mini = his[i][j];
-                for (int k = i; k > 0 && mini; --k){
-                    mini = MIN(mini, his[k][j]);
-                    ans = MAX(ans, mini*(i-k+1));
-                }
-            }
-        }
-        printf("%d\n", ans);
+        printf("%lld\n", a[n]);
     }
     return 0;
 }

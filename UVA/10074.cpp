@@ -78,9 +78,9 @@ int main(){
                 sf(a[i][j]);
                 if(a[i][j])his[i][j] = 0;
                 else his[i][j] = his[i][j-1]+1;
-                cout<<his[i][j]<<" ";
+                // cout<<his[i][j]<<" ";
             }
-            cout<<endl;
+            // cout<<endl;
         }
         int ans = 0;
         for (int i = 1; i <= n; ++i){
