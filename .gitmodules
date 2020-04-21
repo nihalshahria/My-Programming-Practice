@@ -1,6 +1,3 @@
-[submodule "JAVA"]
-	path = JAVA
-	url = https://github.com/nihaleid/Java-Assignments.git
 [submodule "JAVA Practice/JAVA Practice/Java-Assignments"]
 	path = JAVA Practice/JAVA Practice/Java-Assignments
 	url = https://github.com/nihaleid/Java-Assignments.git
