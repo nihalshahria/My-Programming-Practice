@@ -67,53 +67,18 @@ const db PI = acos(-1); //3.14159265358979323846264338328
 //const int fy[]={-1,  1, -2,  2, -2,  2, -1,  1}; // Knights Move
 /*---------------------------------------------------------------------*/
 using namespace std;
-int n,m,z;
-int arr[105];
-std::map<string, int> mp;
-string str[105];
-std::vector<int> v[105];
-void bfs(){
-    priority_queue<int, vector<int>, greater<int> >q;
-    for (int i = 1; i <= n; ++i)
-        if(arr[i]==0)q.push(i);
-    printf("Case #%d: Dilbert should drink beverages in this order:", ++z);
-    while(!q.empty()){
-        int t = q.top();
-        q.pop();
-        for (int i = 0; i < sz(v[t]); ++i)
-        {
-            arr[v[t][i]]--;
-            if(arr[v[t][i]]==0)q.push(v[t][i]);
-        }
-        cout<<" "<<str[t];
-    }
-    printf(".\n");
-}
 int main(){
-    while(~sf(n)){
-        for (int i = 1; i <= n; ++i)
+    int a[6]={};
+    while(cin>>a[0]>>a[1]>>a[2]>>a[3]>>a[4]>>a[5]){
+        ll sum = 0;
+        for (int i = 0; i < 6; ++i)
         {
-           cin>>str[i];
-           mp[str[i]] = i;
+            // int x = (i+1)*()
+            sum+=(a[i]*((i+1)*(i+1)));
         }
-        sf(m);
-        int a,b;
-        for (int i = 1; i <= m; ++i)
-        {
-            string s1,s2;
-            cin>>s1>>s2;
-            a = mp[s1];
-            b = mp[s2];
-            v[a].pb(b);
-            arr[b]++;
-        }
-        bfs();
-        mp.clear();
-        memset(arr, 0, sizeof(arr));
-        for (int i = 0; i <= 105; ++i)
-        {
-            v[i].clear();
-        }
+        if(sum==0)return 0;
+        // cout<<(db)sum/(db)36<<endl;
+        cout<<ceil((db)sum/(db)36)<<endl;
     }
     return 0;
 }

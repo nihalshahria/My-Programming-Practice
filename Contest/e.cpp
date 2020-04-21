@@ -40,15 +40,15 @@
 #define fr(i,x,n)           for(int i=x;i<n;i++)
 #define rfr(i,x,n)          for(int i=x;i>n;i--)
 #define LCM(a, b)           ((a)*((b)/GCD(a,b)))
-template<typename T>T Abs(T a){return (a<0?-a:a);}
-template<typename T>T MAX(T a, T b){return (a>b?a:b);}
-template<typename T>T MIN(T a, T b){return (a<b?a:b);}
-template<typename T>T GCD(T a, T b){if(b==0)return a;return GCD(b,a%b);}
-template<typename T>inline void read(T &x){
-    T f=1;char c;x=0;
-    for(c=getchar();c<'0'||c>'9';c=getchar())if(c=='-')f=-1;
-    for(;c>='0'&&c<='9';c=getchar())x=x*10+c-'0';
-    x*=f;
+template<typename T>T Abs(T a) {return (a < 0 ? -a : a);}
+template<typename T>T MAX(T a, T b) {return (a > b ? a : b);}
+template<typename T>T MIN(T a, T b) {return (a < b ? a : b);}
+template<typename T>T GCD(T a, T b) {if (b == 0)return a; return GCD(b, a % b);}
+template<typename T>inline void read(T &x) {
+    T f = 1; char c; x = 0;
+    for (c = getchar(); c < '0' || c > '9'; c = getchar())if (c == '-')f = -1;
+    for (; c >= '0' && c <= '9'; c = getchar())x = x * 10 + c - '0';
+    x *= f;
 }
 using fl = float;
 using db = double;
@@ -67,25 +67,68 @@ const db PI = acos(-1); //3.14159265358979323846264338328
 //const int fy[]={-1,  1, -2,  2, -2,  2, -1,  1}; // Knights Move
 /*---------------------------------------------------------------------*/
 using namespace std;
-int main(){
-    int n, m,c,z=1;
-    while(~sf(n)){
-        sf(m);
-        std::vector<int> v;
-        for(int i = 1; i<=n; i++)v.pb(i);
-            for (int i = 0; i < 20; ++i)
+int n;
+int a[40][40];
+int main() {
+    while (sf(n) && n) {
+        MEM(a, 0);
+        for (int i = 1; i <= n; ++i)
+        {
+            for (int j = 1; j <= i; ++j)
             {
-                sf(c);
-                for (int j = --c; j < sz(v) && m<sz(v); j+=c)
-                    v.erase(v.begin()+j);
+                sf(a[i][j]);
+                // cout<<i<<j<<" ";
             }
-            printf("Selection #%d\n", z++);
-                for (int i = 0; i < sz(v); ++i)
-                {
-                    if(i)printf(" ");
-                    printf("%d", v[i]);
+            // cout<<endl;
+        }
+        for (int i = n - 1, k = 1; i > 0 ; --i, k++)
+        {
+            for (int j = 1; j <= i; ++j)
+            {
+                sf(a[k + n][j]);
+                // cout<<k+n<<j<<" ";
+            }
+            // cout<<endl;
+        }
+        int r = 1, c = 1;
+        int sum = 0;
+        for (int i = 2 * n - 1; i > n ; --i)
+        {
+            cout<<i<<c<<" ";
+            int x = Abs(a[i][c] - a[i - 1][c]);
+            int y = Abs(a[i][c] - a[i - 1][c + 1]);
+            if (x < y) {
+                sum += a[i - 1][c];
+            }
+            else {
+                sum += a[i - 1][c + 1];
+                c = c + 1;
+            }
+            cout<<i-1<<c<<endl;
+        }
+        for (int i = n; i > 1 ; --i)
+        {
+            if (c == 1) {
+                sum += a[i - 1][c];
+            }
+            else if (c == i) {
+                sum += a[i - 1][c - 1];
+                c = c - 1;
+            }
+            else {
+                int x = Abs(a[i][c] - a[i - 1][c]);
+                int y = Abs(a[i][c] - a[i - 1][c - 1]);
+                if (x < y) {
+                    sum += a[i - 1][c];
                 }
-                printf("\n\n");
+                else {
+                    sum += a[i - 1][c - 1];
+                    c = c - 1;
+                }
+            }
+        }
+        cout<<sum<<endl;
+        // for()
     }
     return 0;
 }

@@ -68,16 +68,42 @@ const db PI = acos(-1); //3.14159265358979323846264338328
 /*---------------------------------------------------------------------*/
 using namespace std;
 int main(){
-    int n;
-    ll a[51];
-    a[1] = 1;
-    a[2] = 2;
-    for (int i = 3; i < 51; ++i)
+    char str[110][110];
+    for (int i = 0; i < 110; ++i)
     {
-        a[i] = a[i-1]+a[i-2];
+        for (int j = 0; j < 110; ++j)
+        {
+            str[i][j]='0';
+        }
     }
-    while(sf(n)&& n){
-        printf("%lld\n", a[n]);
+    string s;
+    int z = 0;
+    while(cin>>s){
+        if(s=="0")break;
+        reverse(s.begin(), s.end());
+        for (int i = 0; i < sz(s); ++i)
+        {
+            str[z][i] = s[i];
+        }
+        z++;
     }
+    int carry=0;
+    int arr[110]={};
+    for (int i = 0; i < 110; ++i)
+    {
+        for (int j = 0; j < z; ++j)
+        {
+            carry+=(str[j][i]-'0');
+        }
+        arr[i] = carry%10;
+        carry/=10;
+    }
+    int y = 109;
+    while(arr[y]==0)y--;
+    for (int i = y; i >=0 ; --i)
+    {
+        cout<<arr[i];
+    }
+    cout<<endl;
     return 0;
 }
