@@ -28,8 +28,9 @@
 #define sffffl(a,b,c,d)     scanf("%lld %lld %lld %lld",&a,&b,&c,&d)
 #define sfffff(a,b,c,d,e)   scanf("%d %d %d %d %d",&a,&b,&c,&d,&e)
 #define sfffffl(a,b,c,d,e)  scanf("%lld %lld %lld %lld %lld",&a,&b,&c,&d,&e)
-#define MEM(a,b)            memset(a, (b), sizeof(a))
 #define sfc(a)              scanf("%c",&a)
+#define MEM(a,b)            memset(a, (b), sizeof(a))
+#define fast()              ios_base::sync_with_stdio(0);cin.tie(0)
 #define pb(a)               push_back(a)
 #define X                   first
 #define Y                   second
@@ -67,26 +68,10 @@ const db PI = acos(-1); //3.14159265358979323846264338328
 //const int fy[]={-1,  1, -2,  2, -2,  2, -1,  1}; // Knights Move
 /*---------------------------------------------------------------------*/
 using namespace std;
-std::vector<int> v[10010];
 int main(){
     int n;
-    sf(n);
-    for (int i = 0; i < n-1; ++i)
-    {
-        int a, b;
-        sff(a,b);
-        v[a].pb(b);
-        v[b].pb(a);
-    }
-    ll ans = 0;
-    for (int i = 1; i <= n; ++i)
-    {
-        if(sz(v[i])>=1){
-            ans+=(sz(v[i])*(sz(v[i])-1)/2);
-            // cout<<i<<endl;
-            // cout<<(sz(v[i])*(sz(v[i])-1)/2)<<endl;
-        }
-    }
-    cout<<ans<<endl;
+    // sf(n);
+    while(~sf(n))
+    cout<<(n&(n-1))<<'\n';
     return 0;
 }

@@ -28,7 +28,8 @@
 #define sffffl(a,b,c,d)     scanf("%lld %lld %lld %lld",&a,&b,&c,&d)
 #define sfffff(a,b,c,d,e)   scanf("%d %d %d %d %d",&a,&b,&c,&d,&e)
 #define sfffffl(a,b,c,d,e)  scanf("%lld %lld %lld %lld %lld",&a,&b,&c,&d,&e)
-#define MEM(a,b)            memset(a, (b), sizeof(a))
+#define fill(a,b)           memset(a, (b), sizeof(a))
+#define debug(x)            cout<<#x<<" "<<x<<'\n';
 #define sfc(a)              scanf("%c",&a)
 #define pb(a)               push_back(a)
 #define X                   first
@@ -39,11 +40,12 @@
 #define mp(a,b)             make_pair(a,b)
 #define fr(i,x,n)           for(int i=x;i<n;i++)
 #define rfr(i,x,n)          for(int i=x;i>n;i--)
-#define LCM(a, b)           ((a)*((b)/GCD(a,b)))
+#define Lcm(a, b)           ((a)*((b)/Gcd(a,b)))
 template<typename T>T Abs(T a){return (a<0?-a:a);}
-template<typename T>T MAX(T a, T b){return (a>b?a:b);}
-template<typename T>T MIN(T a, T b){return (a<b?a:b);}
-template<typename T>T GCD(T a, T b){if(b==0)return a;return GCD(b,a%b);}
+template<typename T>T Max(T a, T b){return (a>b?a:b);}
+template<typename T>T Min(T a, T b){return (a<b?a:b);}
+template<typename T>T Gcd(T a, T b){return (!b)?a:Gcd(b,a%b);}
+template<typename T>T Pow(T a, T b){if(!b)return 1;T t=Pow(a,b/2);return b%2?a*t*t:t*t;}
 template<typename T>inline void read(T &x){
     T f=1;char c;x=0;
     for(c=getchar();c<'0'||c>'9';c=getchar())if(c=='-')f=-1;
@@ -69,21 +71,7 @@ const db PI = acos(-1); //3.14159265358979323846264338328
 using namespace std;
 int main(){
     int n, m;
-    while(~sf(n)){
-        sf(m);
-        int a[n+1][m+1]={};
-        int c = 0;
-        for (int i = 0; i < n; ++i)
-        {
-            for (int j = 1,x; j <= m; ++j)
-            {
-                sf(x);
-                if(x)a[i][j] = a[i][j-1]+1;
-                else a[i][j] = a[i][j-1]+0;
-                if(a[i][j]==m)c++;
-            }
-        }
-        cout<<c<<endl;
-    }
+    sff(n,m);
+    cout<<Gcd(n,m)<<'\n';
     return 0;
 }
