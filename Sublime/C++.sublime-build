@@ -1,0 +1,3 @@
+{
+    "shell_cmd": "g++ -std=c++17 \"$file_name\" -o \"$file_base_name.exe\" && \"$file_base_name.exe\"<\"C:\\Users\\nihal\\Documents\\my_code\\input.txt\">\"C:\\Users\\nihal\\Documents\\my_code\\output.txt\""
+}

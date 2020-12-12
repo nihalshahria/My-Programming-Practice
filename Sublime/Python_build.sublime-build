@@ -1,0 +1,3 @@
+{
+    "shell_cmd": "python \"$file_name\" <\"C:\\Users\\nihal\\Documents\\my_code\\input.txt\">\"C:\\Users\\nihal\\Documents\\my_code\\output.txt\""
+}
