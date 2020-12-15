@@ -1,3 +1,9 @@
+<<<<<<< HEAD
 {
     "shell_cmd": "python \"$file_name\" <\"C:\\Users\\nihal\\Documents\\my_code\\input.txt\">\"C:\\Users\\nihal\\Documents\\my_code\\output.txt\""
 }
+=======
+{
+    "shell_cmd": "python \"$file_name\" <\"C:\\Users\\nihal\\Documents\\my_code\\input.txt\">\"C:\\Users\\nihal\\Documents\\my_code\\output.txt\""
+}
+>>>>>>> df1c52fa542d4b200288cb3f802d5069f31fde8e
