@@ -1,3 +1,7 @@
+/**
+ *    author:  nihalshahria
+ *    created: 15.12.2020 17:11:45
+**/
 /*
           _____       __   __   __      __                  __
          |     \     |  | |  | |  |    |  |       /\       |  |
@@ -68,16 +72,6 @@ const db PI = acos(-1); //3.14159265358979323846264338328
 /*---------------------------------------------------------------------*/
 using namespace std;
 int main(){
-    int t;
-    sf(t);
-    while(t--){
-        ll n;
-        sfl(n);
-        ll m = n;
-        while(m&n){
-            m+=n;
-        }
-        cout<<m<<endl;
-    }
+    cout<<1;
     return 0;
 }
