@@ -71,7 +71,22 @@ const db PI = acos(-1); //3.14159265358979323846264338328
 //const int fy[]={-1,  1, -2,  2, -2,  2, -1,  1}; // Knights Move
 /*---------------------------------------------------------------------*/
 using namespace std;
+int extended_euclidean(int a, int b, int& x, int& y){
+    if(b==0){
+        x = 1, y = 0;
+        return a;
+    }
+    int x1, y1;
+    int g = extended_euclidean(b,a%b,x1,y1);
+    x = y1;
+    y = x1 - y1 * (a / b);
+    return g;
+}
 int main(){
-    cout<<lcm(5,7);
-    return 0;
+    int a, b;
+    while(~sff(a,b)){
+        int x, y, g;
+        g = extended_euclidean(a,b,x,y);
+
+    }
 }
