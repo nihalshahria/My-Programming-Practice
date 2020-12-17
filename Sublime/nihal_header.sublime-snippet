@@ -1,8 +1,8 @@
 <snippet>
-	<content><![CDATA[
+    <content><![CDATA[
 /**
  *    author:  nihalshahria
- *    created: $1
+ *    created: $1 $2
 **/
 /*
           _____       __   __   __      __                  __
@@ -47,9 +47,6 @@
 #define rfr(i,x,n)          for(int i=x;i>n;i--)
 #define LCM(a, b)           ((a)*((b)/GCD(a,b)))
 template<typename T>T Abs(T a){return (a<0?-a:a);}
-template<typename T>T MAX(T a, T b){return (a>b?a:b);}
-template<typename T>T MIN(T a, T b){return (a<b?a:b);}
-template<typename T>T GCD(T a, T b){if(b==0)return a;return GCD(b,a%b);}
 template<typename T>inline void read(T &x){
     T f=1;char c;x=0;
     for(c=getchar();c<'0'||c>'9';c=getchar())if(c=='-')f=-1;
@@ -73,14 +70,25 @@ const db PI = acos(-1); //3.14159265358979323846264338328
 //const int fy[]={-1,  1, -2,  2, -2,  2, -1,  1}; // Knights Move
 /*---------------------------------------------------------------------*/
 using namespace std;
+int nCr(int n, int r){
+    if(!r)return 1;
+    return (nCr(n-1, r-1)*n)/r;
+}
+int Pow(int a, int b){
+    int ans = 1;
+    while(b){
+        if(b & 1)ans = (ans * a);
+        b>>=1;
+        a = (a * a);
+    }
+    return ans;
+}
 int main(){
-    $2
+    $3
     return 0;
 }
 
 ]]></content>
-	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-	<tabTrigger>in</tabTrigger>
-	<!-- Optional: Set a scope to limit where the snippet will trigger -->
-	<scope>source.c++</scope>
+    <tabTrigger>in</tabTrigger>
+    <scope>source.c++</scope>
 </snippet>
