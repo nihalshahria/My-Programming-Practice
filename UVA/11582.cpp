@@ -1,3 +1,7 @@
+/**
+ *    author:  nihalshahria
+ *    created: 18.12.2020 16:42:16
+**/
 /*
           _____       __   __   __      __                  __
          |     \     |  | |  | |  |    |  |       /\       |  |
@@ -41,9 +45,6 @@
 #define rfr(i,x,n)          for(int i=x;i>n;i--)
 #define LCM(a, b)           ((a)*((b)/GCD(a,b)))
 template<typename T>T Abs(T a) {return (a < 0 ? -a : a);}
-template<typename T>T MAX(T a, T b) {return (a > b ? a : b);}
-template<typename T>T MIN(T a, T b) {return (a < b ? a : b);}
-template<typename T>T GCD(T a, T b) {if (b == 0)return a; return GCD(b, a % b);}
 template<typename T>inline void read(T &x) {
     T f = 1; char c; x = 0;
     for (c = getchar(); c < '0' || c > '9'; c = getchar())if (c == '-')f = -1;
@@ -66,106 +67,40 @@ const db PI = acos(-1); //3.14159265358979323846264338328
 //const int fx[]={-2, -2, -1, -1,  1,  1,  2,  2};  // Knights Move
 //const int fy[]={-1,  1, -2,  2, -2,  2, -1,  1}; // Knights Move
 /*---------------------------------------------------------------------*/
+int fib[1000010];
 using namespace std;
-stack<int>v[25];
-std::map<int, int> m;
-int n, a, b;
-string str1, str2;
-void init() {
-    for (int i = 0; i < n; ++i)v[i].push(i), m[i] = i;
+int nCr(int n, int r) {
+    if (!r)return 1;
+    return (nCr(n - 1, r - 1) * n) / r;
 }
-void moveOn() {
-    int posA = m[a], posB = m[b];
-    // cout<<posA<<" "<<posB<<endl;
-    // cout<<v[1].top()<<endl;
-    int t = v[posB].top();
-    while (t != b) {
-        m[t] = t;
-        v[t].push(t);
-        v[posB].pop();
-        t = v[posB].top();
+int Pow(ull a, ull b, int mod) {
+    int ans = 1 % mod;
+    while (b) {
+        if (b & 1)ans = (ans * a) % mod;
+        b >>= 1;
+        a = (a * a) % mod;
     }
-    t = v[posA].top();
-    while (t != a) {
-        m[t] = t;
-        v[t].push(t);
-        v[posA].pop();
-        t = v[posA].top();
-    }
-    v[posA].pop(), v[posB].push(a), m[a] = posB;
-}
-void moveOv() {
-    int posA = m[a], posB = m[b];
-    int t = v[posA].top();
-    while (t != a) {
-        m[t] = t;
-        v[t].push(t);
-        v[posA].pop();
-        t = v[posA].top();
-    }
-    v[posA].pop(), v[posB].push(a), m[a] = posB;
-}
-void pileOn() {
-    int posA = m[a], posB = m[b];
-    int t = v[posB].top();
-    while (t != b) {
-        m[t] = t;
-        v[t].push(t);
-        v[posB].pop();
-        t = v[posB].top();
-    }
-    t = v[posA].top();
-    stack<int>st;
-    while (t != a) {
-        st.push(t);
-        v[posA].pop();
-        t = v[posA].top();
-    }
-    st.push(t), v[posA].pop();
-    while (!st.empty()) {
-        t = st.top();
-        st.pop();
-        v[posB].push(t);
-        m[t] = posB;
-    }
-}
-void pileOv() {
-    int posA = m[a], posB = m[b];
-    int t = v[posA].top();
-    stack<int>st;
-    while (t != a) {
-        st.push(t);
-        v[posA].pop();
-        t = v[posA].top();
-    }
-    st.push(t), v[posA].pop();
-    while (!st.empty()) {
-        t = st.top();
-        st.pop();
-        v[posB].push(t);
-        m[t] = posB;
-    }
+    return ans;
 }
 int main() {
-    sf(n);
-    init();
-    while (cin >> str1) {
-        if (str1[0] == 'q')break;
-        sf(a);
-        cin >> str2;
-        sf(b);
-        if (m[a] == m[b])continue;
-        if (str1[0] == 'm' && str2[1] == 'n')moveOn();
-        else if (str1[0] == 'm' && str2[1] == 'v')moveOv();
-        else if (str1[0] == 'p' && str2[1] == 'n')pileOn();
-        else if (str1[0] == 'p' && str2[1] == 'v')pileOv();
-    }
-    for (int i = 0; i < n; ++i){
-        printf("%d:", i);
-        stack<int>st;
-        while (!v[i].empty())st.push(v[i].top()), v[i].pop();
-        while (!st.empty())printf(" %d", st.top()), st.pop();
-        printf("\n");
+    int t;
+    sf(t);
+    while (t--) {
+        ull a, b;
+        int n;
+        cin >> a >> b >> n;
+        int m = n * n + 10;
+        fib[0] = 0;
+        fib[1] = 1 % n;
+        int f = 1;
+        for (ll i = 2; i <= n * n; ++i){
+            fib[i] = (fib[i - 1] + fib[i - 2]) % n;
+            if (fib[i - 1] == fib[0] && fib[i] == fib[1]) {
+                f = i - 1;
+                break;
+            }
+        }
+        printf("%d\n", fib[Pow(a % f, b, f)]);
     }
     return 0;
 }
