@@ -2,7 +2,7 @@
     <content><![CDATA[
 /**
  *    author:  nihalshahria
- *    created: $1 $2
+ *    created: $1
 **/
 /*
           _____       __   __   __      __                  __
@@ -84,7 +84,7 @@ int Pow(int a, int b){
     return ans;
 }
 int main(){
-    $3
+    $2
     return 0;
 }
 

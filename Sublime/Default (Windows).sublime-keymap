@@ -1,8 +1,7 @@
 //build key line: 281
 [
     // date and time
-    {"keys": ["ctrl+shift+,"], "command": "add_date" },
-    {"keys": ["ctrl+shift+."], "command": "add_time" },
+    {"keys": ["ctrl+shift+,"], "command": "add_moment" },
     //
     { "keys": ["ctrl+shift+n"], "command": "new_window" },
     { "keys": ["ctrl+shift+w"], "command": "close_window" },
