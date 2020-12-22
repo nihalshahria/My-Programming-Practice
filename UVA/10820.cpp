@@ -1,6 +1,6 @@
 /**
  *    author:  nihalshahria
- *    created: 21.12.2020 19:35:28
+ *    created: 22.12.2020 21:01:53
 **/
 /*
           _____       __   __   __      __                  __
@@ -81,21 +81,32 @@ int Pow(int a, int b) {
 	}
 	return ans;
 }
-int store[30000010];
-void preCal() {
-	for (int i = 1; i <= 30000000; ++i) 
-		for (int ii = i + i; ii <= 30000000; ii += i)
-			if ((ii ^ (ii - i)) == i) store[ii]++;
-	for (int i = 1; i <= 30000000; ++i)store[i]+=store[i-1];
+int phi[50010];
+bool is_composit[50010];
+void sieveOfphi() {
+	for (int i = 1; i <= 50000; i++)phi[i] = i;
+	is_composit[1] = 1;
+	for (int i = 2; i <= 50000; i += 2) {
+		if (i != 2)is_composit[1] = 1;
+		phi[i] /= 2;
+	}
+	for (int i = 3; i <= 50000; i += 2){
+		if (!is_composit[i]) {
+			phi[i]--;
+			for (int ii = i << 1; ii <= 50000; ii += i){
+				is_composit[ii] = 1;
+				phi[ii] = phi[ii] / i * (i - 1);
+			}
+		}
+	}
+	for (int i = 1; i <= 50000; ++i)phi[i] += phi[i - 1];
+
 }
 int main() {
-	int t, z = 0;
-	preCal();
-	sf(t);
-	while (t--) {
-		int n;
-		sf(n);
-		printf("Case %d: %d\n", ++z, store[n]);
+	sieveOfphi();
+	int n;
+	while (sf(n) && n) {
+		printf("%lld\n", 1ll * 2 * phi[n] - 1);
 	}
 	return 0;
 }
