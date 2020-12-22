@@ -91,7 +91,8 @@ void sieveOfphi() {
 		phi[i] /= 2;
 	}
 	for (int i = 3; i <= 50000; i += 2){
-		if (!is_composit[i]) {
+		if (!is_composit[i]) 
+		{
 			phi[i]--;
 			for (int ii = i << 1; ii <= 50000; ii += i){
 				is_composit[ii] = 1;
