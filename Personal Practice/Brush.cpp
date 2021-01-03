@@ -25,6 +25,7 @@
 #define INF             9999999
 
 
+
 using namespace std;
 int main(){
     #ifndef ONLINE_JUDGE
