@@ -1,8 +1,6 @@
-<snippet>
-    <content><![CDATA[
 /**
  *    author:  nihalshahria
- *    created: $1
+ *    created: 05.01.2021 12:17:21
 **/
 /*
           _____       __   __   __      __                  __
@@ -41,12 +39,12 @@
 #define sz(x)               x.size()
 #define fr(i,x,n)           for(int i=x;i<n;i++)
 #define rfr(i,x,n)          for(int i=x;i>n;i--)
-template<typename T>T Abs(T a){return (a<0?-a:a);}
-template<typename T>inline void read(T &x){
-    T f=1;char c;x=0;
-    for(c=getchar();c<'0'||c>'9';c=getchar())if(c=='-')f=-1;
-    for(;c>='0'&&c<='9';c=getchar())x=x*10+c-'0';
-    x*=f;
+template<typename T>T Abs(T a) {return (a < 0 ? -a : a);}
+template<typename T>inline void read(T &x) {
+    T f = 1; char c; x = 0;
+    for (c = getchar(); c < '0' || c > '9'; c = getchar())if (c == '-')f = -1;
+    for (; c >= '0' && c <= '9'; c = getchar())x = x * 10 + c - '0';
+    x *= f;
 }
 using fl = float;
 using db = double;
@@ -69,25 +67,49 @@ const db PI = acos(-1); //3.14159265358979323846264338328
 //freopen("output.txt", "w", stdout);
 //#endif
 using namespace std;
-int nCr(int n, int r){
-    if(!r)return 1;
-    return (nCr(n-1, r-1)*n)/r;
+int nCr(int n, int r) {
+    if (!r)return 1;
+    return (nCr(n - 1, r - 1) * n) / r;
 }
-int Pow(int a, int b, int mod = intlim){
-    int ans = 1;
-    while(b){
-        if(b & 1)ans = (1ll * ans * a) % mod;
-        b>>=1;
-        a = (1ll * a * a) % mod;
+ull Pow(ull a, ull b, ull mod = intlim) {
+    ull ans = 1;
+    while (b) {
+        if (b & 1)ans = ((__uint128_t)ans * a) % mod;
+        b >>= 1;
+        a = ((__uint128_t)a * a) % mod;
     }
     return ans;
 }
-int main(){
-    $2
+bool chk_composite(ull n, ull a, ull d, int r) {
+    ull x = Pow(a, d, n);
+    if (x == 1 || x == n - 1)return false;
+    for (int i = 1; i <= r; ++i) {
+        x = (__uint128_t)x * x % n;
+        if (x == n - 1)return false;
+    }
+    return true;
+}
+bool is_prime(ull n){
+    if (n < 2)return false;
+    int r = 0;
+    ull d = n - 1;
+    while (!(d & 1)) {
+        d >>= 1;
+        r++;
+    }
+    for (auto a : {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37}) {
+        if (n == a)return true;
+        if (chk_composite(n, a, d, r))return false;
+    }
+    return true;
+}
+int main() {
+    int t;
+    sf(t);
+    while (t--) {
+        ull n;
+        scanf("%llu", &n);
+        printf((is_prime(n)) ? "YES\n" : "NO\n");
+    }
     return 0;
 }
-
-]]></content>
-    <tabTrigger>in</tabTrigger>
-    <scope>source.c++</scope>
-</snippet>
