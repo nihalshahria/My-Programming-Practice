@@ -1,4 +1,3 @@
-[Atm.c](My-Programming-Practice/Personal-Practice/ATM.c)
 <!-- Headings -->
 # Heading 1
 ## Heading 2
