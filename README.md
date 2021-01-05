@@ -3,6 +3,6 @@ I have practiced problem solving on some online judges. Besides I wrote some cod
 
 
 <!-- Tasklist -->
-* [x]Task 1
-* [x]Task 2
-* [ ]Task 3
+* [x] Task 1
+* [x] Task 2
+* [ ] Task 3
