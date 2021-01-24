@@ -12,9 +12,10 @@ void kmp(string &str, string &pat) {
 	int l1 = str.size(), l2 = pat.size(), i = 0, j = 0, f = 0;
 	std::vector<int> v(l2, 0);
 	computeLPS(pat, l2, v);
+	
 	while (i < l1) {
 		if (pat[j] == str[i])j++,i++;
-		if (j == l2)printf("%d found\n", i - j + 1), j = v[j], f++;
+		if (j == l2)printf("%d found\n", i - j + 1), j = v[j-1], f++;
 		else if (i < l1 && pat[j] != str[i]) {
 			if (j)j = v[j - 1];
 			else i++;
@@ -24,7 +25,7 @@ void kmp(string &str, string &pat) {
 int main(int argc, char const *argv[])
 {
 	string str1, pat;
-	cin >> str1 >> pat;
+	cin >> str1 >> pat; //input
 	kmp(str1, pat);
 	return 0;
 }
