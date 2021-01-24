@@ -7,6 +7,7 @@ bool chk_composite(ull n, ull a, ull d, int r) {
     }
     return true;
 }
+
 bool is_prime(ull n){   // use ull & __uint128_t type changer in power function
     if (n < 2)return false;
     int r = 0;
