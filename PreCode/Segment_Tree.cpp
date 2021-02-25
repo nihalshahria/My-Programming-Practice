@@ -17,7 +17,7 @@ void build(int node,int b,int e){
 }
 int query(int node,int b,int e,int l,int r) // l r is range for query
 {
-    if(b>r || e<l) return 0; // return INT_MAX for max query return INT_MIN for min query
+    if(b>r || e<l) return 0; // return INT_MAX for min query return INT_MIN for max query
     if(b>=l && e<=r){
         return seg[node];
     }
