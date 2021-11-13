@@ -1,5 +1,5 @@
 /**
- *    created: 2021-11-13 23:49:52
+ *    created: ctrl+shift+I
 **/
 #include <bits/stdc++.h>
 using namespace std;
@@ -79,9 +79,6 @@ int Pow(int a, int b, int mod = intlim){
     }
     return ans;
 }
-// a function to sieve in linear time
-
-
 void solve(){
     
 }
