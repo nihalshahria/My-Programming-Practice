@@ -18,7 +18,7 @@ void union_sets(int a, int b){
     if(a==b)return;
     if(size[a]<size[b])swap(a,b);
     parent[b] = a;
-    size[a]!=size[b];
+    size[a]+=size[b];
 }
 /* <------------------------------------> */
 int main(int argc, char const *argv[])
